@@ -963,9 +963,9 @@
     <section id="summary" class="section">
       <div class="section-header"><h2>Professional Summary</h2></div>
       <ul>
-        <li>Blockchain developer and web engineer focused on clean, interactive experiences.</li>
+        <li>Full stack web developer and web engineer focused on clean, interactive experiences.</li>
         <li>Real estate and property management background with on site estate experience.</li>
-        <li>Mindset with a focus on sales and final desired result achieved.</li>
+        <li>Mindset with a focus on final desired results achieved.</li>
       </ul>
       <div class="section-header"><h2>Previous Companies</h2></div>
       <div class="company-logos">
@@ -1007,7 +1007,7 @@
       <div class="qualification-list">
         <div class="qualification-item" data-pdf="Completion%20Full-Stack%20Web%20Developer%20Certificate.pdf">
           <div>
-            <div class="qualification-title">Full-Stack Web Developer Certificate (Completion)</div>
+            <div class="qualification-title">Full-Stack Web Developer Certificate</div>
             <div class="qualification-meta">PDF available below</div>
           </div>
           <div class="qualification-right">
@@ -1062,17 +1062,7 @@
 
         <div class="qualification-item in-progress">
           <div>
-            <div class="qualification-title">Cyber Security Analyst</div>
-            <div class="qualification-meta">In progress</div>
-          </div>
-          <div class="qualification-right">
-            <span class="status-badge in-progress">In progress</span>
-          </div>
-        </div>
-
-        <div class="qualification-item in-progress">
-          <div>
-            <div class="qualification-title">Adobe Suite</div>
+            <div class="qualification-title">Cybersecurity Analyst</div>
             <div class="qualification-meta">In progress</div>
           </div>
           <div class="qualification-right">
@@ -1418,9 +1408,9 @@
     const roadmapList = document.getElementById('roadmapList');
 
     const roadmapSteps = [
-      { id: 'certs-core', title: 'Core certifications completed', meta: 'Web dev, real estate competence, trading masterclass', status: 'done' },
+      { id: 'certs-core', title: 'Cybersecurity Analyst', meta: 'In progress', status: 'doing' },
       { id: 'fk-practice', title: 'Real estate practice experience', meta: 'FK Consulting practical exposure', status: 'done' },
-      { id: 'pde4-finals', title: 'PDE4 finals (Real Estate)', meta: 'Exam in February 2026', status: 'doing' },
+      { id: 'pde4-finals', title: 'PDE4 finals (Real Estate)', meta: 'Exam in February 2026', status: 'done' },
       { id: 'income-map', title: 'Income map + compliance plan', meta: 'Legit revenue streams, risk checks, timelines', status: 'doing' },
       { id: 'property-services', title: 'Property services pipeline', meta: 'Client sourcing, listings, rentals, reporting', status: 'todo' },
       { id: 'digital-services', title: 'Digital services pipeline', meta: 'Web builds, automation, media production', status: 'todo' },
@@ -1452,10 +1442,17 @@
       });
     }
 
+    function getQualificationStatus(matchText) {
+      const items = [...document.querySelectorAll('#qualifications .qualification-item')];
+      const match = items.find(item => {
+        const title = item.querySelector('.qualification-title')?.textContent || '';
+        return title.includes(matchText);
+      });
+      return getStatusFromBadge(match?.querySelector('.status-badge'));
+    }
+
     function applyRoadmapInputs() {
-      const hasFullStack = hasCompletedQualification('Full-Stack Web Developer');
-      const hasSseta = hasCompletedQualification('SSETA');
-      const hasTrading = hasCompletedQualification('Trading Masterclass');
+      const cybersecurityStatus = getQualificationStatus('Cybersecurity Analyst');
       const hasFk = hasCompletedQualification('FK Consulting');
 
       const tradingStatus = getProjectStatus('Trading Analytics');
@@ -1466,7 +1463,7 @@
       roadmapSteps.forEach(step => {
         switch (step.id) {
           case 'certs-core':
-            step.status = (hasFullStack && hasSseta && hasTrading) ? 'done' : 'doing';
+            step.status = cybersecurityStatus === 'done' ? 'done' : cybersecurityStatus === 'todo' ? 'todo' : 'doing';
             break;
           case 'fk-practice':
             step.status = hasFk ? 'done' : 'doing';
