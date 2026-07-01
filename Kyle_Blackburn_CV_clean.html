@@ -1060,13 +1060,58 @@
           </div>
         </div>
 
-        <div class="qualification-item in-progress">
+        <div class="qualification-item" data-pdf="Certificate%20Of%20Completion%20-%20Hands%20On%20Cybersecurity.pdf">
           <div>
             <div class="qualification-title">Cybersecurity Analyst</div>
-            <div class="qualification-meta">In progress</div>
+            <div class="qualification-meta">PDF available below</div>
           </div>
           <div class="qualification-right">
-            <span class="status-badge in-progress">In progress</span>
+            <button class="btn ghost small" type="button" data-qual-pdf="Certificate%20Of%20Completion%20-%20Hands%20On%20Cybersecurity.pdf">View PDF</button>
+            <span class="status-badge complete">Complete</span>
+          </div>
+        </div>
+
+        <div class="qualification-item" data-pdf="Java%20Tutorial%20for%20Complete%20Begginers%20Certificate%20of%20Completion.pdf">
+          <div>
+            <div class="qualification-title">Java Development</div>
+            <div class="qualification-meta">Java Tutorial for Complete Beginners - Completed June 2026</div>
+          </div>
+          <div class="qualification-right">
+            <button class="btn ghost small" type="button" data-qual-pdf="Java%20Tutorial%20for%20Complete%20Begginers%20Certificate%20of%20Completion.pdf">View PDF</button>
+            <span class="status-badge complete">Complete</span>
+          </div>
+        </div>
+
+        <div class="qualification-item" data-pdf="User%20Experience%20Design%20Essentials%20Adobe%20XD%20Certificate%20of%20Completion.pdf">
+          <div>
+            <div class="qualification-title">UI and UX Designer</div>
+            <div class="qualification-meta">User Experience Design Essentials (Adobe XD) - Completed February 2026</div>
+          </div>
+          <div class="qualification-right">
+            <button class="btn ghost small" type="button" data-qual-pdf="User%20Experience%20Design%20Essentials%20Adobe%20XD%20Certificate%20of%20Completion.pdf">View PDF</button>
+            <span class="status-badge complete">Complete</span>
+          </div>
+        </div>
+
+        <div class="qualification-item" data-pdf="Typing%20Certification.pdf">
+          <div>
+            <div class="qualification-title">Typing Skills</div>
+            <div class="qualification-meta">TypingTest certification (55 WPM, 100% accuracy) - Completed June 2026</div>
+          </div>
+          <div class="qualification-right">
+            <button class="btn ghost small" type="button" data-qual-pdf="Typing%20Certification.pdf">View PDF</button>
+            <span class="status-badge complete">Complete</span>
+          </div>
+        </div>
+
+        <div class="qualification-item" data-pdf="AI%20Pair%20Programming%20with%20Github%20Copilot%20Certificate%20of%20Completion.pdf">
+          <div>
+            <div class="qualification-title">AI Pair Programming</div>
+            <div class="qualification-meta">LinkedIn Learning: AI Pair Programming with GitHub Copilot - Completed June 2026</div>
+          </div>
+          <div class="qualification-right">
+            <button class="btn ghost small" type="button" data-qual-pdf="AI%20Pair%20Programming%20with%20Github%20Copilot%20Certificate%20of%20Completion.pdf">View PDF</button>
+            <span class="status-badge complete">Complete</span>
           </div>
         </div>
       </div>
@@ -1084,6 +1129,11 @@
               <option value="SSETA%20-%20FETC%20Real%20estate%20Level%2004%20%28Certificate%20of%20competence%29.pdf">Certificate – SSETA FETC Real Estate Level 04</option>
               <option value="DayTradingMaster%20Market%20Analyisis.pdf">Certificate – Trading Masterclass (Market Analysis)</option>
               <option value="Certificate%20of%20Attendance%20Kyle%20Blackburn.pdf">Certificate – FK Consulting (Real Estate Practice)</option>
+              <option value="Certificate%20Of%20Completion%20-%20Hands%20On%20Cybersecurity.pdf">Certificate – Cybersecurity Analyst (Udemy)</option>
+              <option value="Java%20Tutorial%20for%20Complete%20Begginers%20Certificate%20of%20Completion.pdf">Certificate – Java Development (Udemy)</option>
+              <option value="User%20Experience%20Design%20Essentials%20Adobe%20XD%20Certificate%20of%20Completion.pdf">Certificate – UI and UX Designer (Udemy)</option>
+              <option value="Typing%20Certification.pdf">Certificate – Typing Skills</option>
+              <option value="AI%20Pair%20Programming%20with%20Github%20Copilot%20Certificate%20of%20Completion.pdf">Certificate – AI Pair Programming (LinkedIn Learning)</option>
             </select>
           </div>
 
@@ -1334,6 +1384,11 @@
         <a class="btn primary" href="SSETA%20-%20FETC%20Real%20estate%20Level%2004%20%28Certificate%20of%20competence%29.pdf" download>Download SSETA Certificate</a>
         <a class="btn ghost" href="DayTradingMaster%20Market%20Analyisis.pdf" download>Download Trading Masterclass Certificate</a>
         <a class="btn ghost" href="Certificate%20of%20Attendance%20Kyle%20Blackburn.pdf" download>Download FK Consulting Certificate</a>
+        <a class="btn ghost" href="Certificate%20Of%20Completion%20-%20Hands%20On%20Cybersecurity.pdf" download>Download Cybersecurity Analyst Certificate</a>
+        <a class="btn ghost" href="Java%20Tutorial%20for%20Complete%20Begginers%20Certificate%20of%20Completion.pdf" download>Download Java Development Certificate</a>
+        <a class="btn ghost" href="User%20Experience%20Design%20Essentials%20Adobe%20XD%20Certificate%20of%20Completion.pdf" download>Download UI and UX Designer Certificate</a>
+        <a class="btn ghost" href="Typing%20Certification.pdf" download>Download Typing Skills Certificate</a>
+        <a class="btn ghost" href="AI%20Pair%20Programming%20with%20Github%20Copilot%20Certificate%20of%20Completion.pdf" download>Download AI Pair Programming Certificate</a>
       </div>
     </section>
 
@@ -1408,7 +1463,7 @@
     const roadmapList = document.getElementById('roadmapList');
 
     const roadmapSteps = [
-      { id: 'certs-core', title: 'Cybersecurity Analyst', meta: 'In progress', status: 'doing' },
+      { id: 'certs-core', title: 'Cybersecurity Analyst', meta: 'Udemy completion (May 2026)', status: 'done' },
       { id: 'fk-practice', title: 'Real estate practice experience', meta: 'FK Consulting practical exposure', status: 'done' },
       { id: 'pde4-finals', title: 'PDE4 finals (Real Estate)', meta: 'Exam in February 2026', status: 'done' },
       { id: 'income-map', title: 'Income map + compliance plan', meta: 'Legit revenue streams, risk checks, timelines', status: 'doing' },
