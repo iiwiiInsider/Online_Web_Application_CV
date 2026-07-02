@@ -1701,9 +1701,12 @@
     let qualPdfDocument = null;
     let qualPdfPageNumber = 1;
     let qualPdfLoadingTask = null;
+    let qualPdfLoadToken = 0;
     let qualPdfRenderToken = 0;
     let qualPdfRenderTask = null;
     let qualPdfRenderQueue = Promise.resolve();
+    let qualPdfResizeFrame = 0;
+    let qualPdfResizeMuted = false;
 
     if (window.pdfjsLib) {
       window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -1736,13 +1739,25 @@
       const desiredHeight = (availableWidth * (height / width)) + padding;
       const { minHeight, maxHeight } = getQualificationsPdfViewerHeightBounds();
       const nextHeight = Math.max(minHeight, Math.min(maxHeight, desiredHeight));
-      qualPdfViewer.style.height = `${Math.round(nextHeight)}px`;
+      const roundedHeight = `${Math.round(nextHeight)}px`;
+      if (qualPdfViewer.style.height === roundedHeight) return;
+      qualPdfResizeMuted = true;
+      qualPdfViewer.style.height = roundedHeight;
+      requestAnimationFrame(() => {
+        qualPdfResizeMuted = false;
+      });
     }
 
     function resetQualificationsPdfViewerHeight() {
       if (!qualPdfViewer) return;
       const { minHeight, maxHeight } = getQualificationsPdfViewerHeightBounds();
-      qualPdfViewer.style.height = `${Math.round(Math.max(minHeight, maxHeight))}px`;
+      const nextHeight = `${Math.round(Math.max(minHeight, maxHeight))}px`;
+      if (qualPdfViewer.style.height === nextHeight) return;
+      qualPdfResizeMuted = true;
+      qualPdfViewer.style.height = nextHeight;
+      requestAnimationFrame(() => {
+        qualPdfResizeMuted = false;
+      });
     }
 
     function updateQualificationsPdfMeta(message) {
@@ -1854,11 +1869,14 @@
           updateQualificationsPdfNav();
         });
 
-      return qualPdfRenderQueue;
+      return qualPdfRenderQueue.catch(error => {
+        if (!isQualificationsPdfRenderCancelled(error)) throw error;
+      });
     }
 
     async function loadQualificationsPdf(file) {
       if (!file) return;
+      const loadToken = ++qualPdfLoadToken;
       currentQualificationsPdf = file;
       if (qualPdfOpen) qualPdfOpen.href = file;
       if (qualPdfDownload) qualPdfDownload.href = file;
@@ -1894,12 +1912,18 @@
 
       try {
         qualPdfLoadingTask = window.pdfjsLib.getDocument({ url: file });
-        qualPdfDocument = await qualPdfLoadingTask.promise;
+        const loadedDocument = await qualPdfLoadingTask.promise;
+        if (loadToken !== qualPdfLoadToken) {
+          await loadedDocument.destroy();
+          return;
+        }
+        qualPdfDocument = loadedDocument;
         qualPdfLoadingTask = null;
         qualPdfPageNumber = 1;
         updateQualificationsPdfNav();
         await renderQualificationsPdfPage(qualPdfPageNumber);
       } catch (error) {
+        if (loadToken !== qualPdfLoadToken) return;
         qualPdfDocument = null;
         qualPdfLoadingTask = null;
         showQualificationsPdfNativeFallback('Using the browser preview for this document.');
@@ -1929,12 +1953,26 @@
 
     if (window.ResizeObserver && qualPdfViewer) {
       const qualPdfResizeObserver = new ResizeObserver(() => {
-        if (qualPdfDocument) renderQualificationsPdfPage(qualPdfPageNumber);
+        if (!qualPdfDocument || qualPdfResizeMuted) return;
+        if (qualPdfResizeFrame) cancelAnimationFrame(qualPdfResizeFrame);
+        qualPdfResizeFrame = requestAnimationFrame(() => {
+          qualPdfResizeFrame = 0;
+          if (qualPdfDocument && !qualPdfResizeMuted) {
+            renderQualificationsPdfPage(qualPdfPageNumber);
+          }
+        });
       });
       qualPdfResizeObserver.observe(qualPdfViewer);
     } else {
       window.addEventListener('resize', () => {
-        if (qualPdfDocument) renderQualificationsPdfPage(qualPdfPageNumber);
+        if (!qualPdfDocument || qualPdfResizeMuted) return;
+        if (qualPdfResizeFrame) cancelAnimationFrame(qualPdfResizeFrame);
+        qualPdfResizeFrame = requestAnimationFrame(() => {
+          qualPdfResizeFrame = 0;
+          if (qualPdfDocument && !qualPdfResizeMuted) {
+            renderQualificationsPdfPage(qualPdfPageNumber);
+          }
+        });
       });
     }
 
