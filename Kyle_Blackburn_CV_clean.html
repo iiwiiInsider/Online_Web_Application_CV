@@ -1702,6 +1702,8 @@
     let qualPdfPageNumber = 1;
     let qualPdfLoadingTask = null;
     let qualPdfRenderToken = 0;
+    let qualPdfRenderTask = null;
+    let qualPdfRenderQueue = Promise.resolve();
 
     if (window.pdfjsLib) {
       window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -1745,6 +1747,22 @@
 
     function updateQualificationsPdfMeta(message) {
       if (qualPdfPageMeta) qualPdfPageMeta.textContent = message;
+    }
+
+    function isQualificationsPdfRenderCancelled(error) {
+      return error && (error.name === 'RenderingCancelledException' || error.message === 'Rendering cancelled, page 1');
+    }
+
+    async function cancelQualificationsPdfRender() {
+      qualPdfRenderToken += 1;
+      if (qualPdfRenderTask) {
+        qualPdfRenderTask.cancel();
+      }
+      try {
+        await qualPdfRenderQueue;
+      } catch (error) {
+        if (!isQualificationsPdfRenderCancelled(error)) throw error;
+      }
     }
 
     function updateQualificationsPdfNav() {
@@ -1794,30 +1812,49 @@
     }
 
     async function renderQualificationsPdfPage(pageNumber) {
-      if (!qualPdfDocument || !qualPdfCanvas || !qualPdfViewer) return;
       const renderToken = ++qualPdfRenderToken;
-      const page = await qualPdfDocument.getPage(pageNumber);
-      const baseViewport = page.getViewport({ scale: 1 });
-      setQualificationsPdfViewerHeightFromAspect(baseViewport.width, baseViewport.height);
-      const availableWidth = Math.max(qualPdfViewer.clientWidth - 24, 120);
-      const availableHeight = Math.max(qualPdfViewer.clientHeight - 24, 160);
-      const fitScale = Math.min(availableWidth / baseViewport.width, availableHeight / baseViewport.height);
-      const scale = Math.max(fitScale, 0.1);
-      const devicePixelRatio = window.devicePixelRatio || 1;
-      const renderViewport = page.getViewport({ scale: scale * devicePixelRatio });
-      const displayWidth = renderViewport.width / devicePixelRatio;
-      const displayHeight = renderViewport.height / devicePixelRatio;
-      const context = qualPdfCanvas.getContext('2d', { alpha: false });
+      qualPdfRenderQueue = qualPdfRenderQueue
+        .catch(error => {
+          if (!isQualificationsPdfRenderCancelled(error)) throw error;
+        })
+        .then(async () => {
+          if (!qualPdfDocument || !qualPdfCanvas || !qualPdfViewer || renderToken !== qualPdfRenderToken) return;
+          const page = await qualPdfDocument.getPage(pageNumber);
+          if (renderToken !== qualPdfRenderToken) return;
+          const baseViewport = page.getViewport({ scale: 1 });
+          setQualificationsPdfViewerHeightFromAspect(baseViewport.width, baseViewport.height);
+          const availableWidth = Math.max(qualPdfViewer.clientWidth - 24, 120);
+          const availableHeight = Math.max(qualPdfViewer.clientHeight - 24, 160);
+          const fitScale = Math.min(availableWidth / baseViewport.width, availableHeight / baseViewport.height);
+          const scale = Math.max(fitScale, 0.1);
+          const devicePixelRatio = window.devicePixelRatio || 1;
+          const renderViewport = page.getViewport({ scale: scale * devicePixelRatio });
+          const displayWidth = renderViewport.width / devicePixelRatio;
+          const displayHeight = renderViewport.height / devicePixelRatio;
+          const context = qualPdfCanvas.getContext('2d', { alpha: false });
 
-      qualPdfCanvas.width = Math.floor(renderViewport.width);
-      qualPdfCanvas.height = Math.floor(renderViewport.height);
-      qualPdfCanvas.style.width = `${displayWidth}px`;
-      qualPdfCanvas.style.height = `${displayHeight}px`;
-      showQualificationsPdfCanvas();
+          qualPdfCanvas.width = Math.floor(renderViewport.width);
+          qualPdfCanvas.height = Math.floor(renderViewport.height);
+          qualPdfCanvas.style.width = `${displayWidth}px`;
+          qualPdfCanvas.style.height = `${displayHeight}px`;
+          showQualificationsPdfCanvas();
 
-      await page.render({ canvasContext: context, viewport: renderViewport }).promise;
-      if (renderToken !== qualPdfRenderToken) return;
-      updateQualificationsPdfNav();
+          const renderTask = page.render({ canvasContext: context, viewport: renderViewport });
+          qualPdfRenderTask = renderTask;
+
+          try {
+            await renderTask.promise;
+          } finally {
+            if (qualPdfRenderTask === renderTask) {
+              qualPdfRenderTask = null;
+            }
+          }
+
+          if (renderToken !== qualPdfRenderToken) return;
+          updateQualificationsPdfNav();
+        });
+
+      return qualPdfRenderQueue;
     }
 
     async function loadQualificationsPdf(file) {
@@ -1842,6 +1879,8 @@
         showQualificationsPdfNativeFallback('Using the browser preview for this document.');
         return;
       }
+
+      await cancelQualificationsPdfRender();
 
       if (qualPdfLoadingTask) {
         qualPdfLoadingTask.destroy();
