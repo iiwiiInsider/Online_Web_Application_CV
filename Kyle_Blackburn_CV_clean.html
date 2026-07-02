@@ -75,8 +75,18 @@
       margin-bottom: 0.5rem;
     }
 
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
     .chip {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
       background: rgba(59, 130, 246, 0.15);
       border: 1px solid var(--accent);
       color: var(--accent);
@@ -84,7 +94,21 @@
       border-radius: 8px;
       text-decoration: none;
       font-size: 0.9rem;
-      margin: 0.25rem;
+      margin: 0;
+      transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    }
+
+    .chip:hover {
+      background: rgba(59, 130, 246, 0.22);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
+    }
+
+    .chip svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      flex: 0 0 auto;
     }
 
     .hero-actions {
@@ -419,6 +443,20 @@
       font-weight: 600;
     }
 
+    .rm-goal .status {
+      fill: rgba(148, 163, 184, 0.95);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .rm-goal .heading {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
     .rm-node circle.base {
       stroke: rgba(148, 163, 184, 0.75);
       stroke-width: 2;
@@ -505,6 +543,15 @@
     .roadmap-item.todo { opacity: 0.78; }
     .roadmap-item.done { border-color: rgba(34, 197, 94, 0.45); }
     .roadmap-item.doing { border-color: rgba(34, 197, 94, 0.65); }
+
+    .roadmap-empty {
+      padding: 1rem;
+      border: 1px dashed rgba(148, 163, 184, 0.35);
+      border-radius: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      background: rgba(15, 23, 42, 0.25);
+    }
 
     @media (max-width: 1200px) {
       .sections { padding: 2rem 1.25rem; }
@@ -865,6 +912,45 @@
       border: 1px solid var(--border);
     }
 
+    .project-output {
+      background: #0b1220;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 0.95rem;
+      min-height: 54px;
+      color: var(--text);
+    }
+
+    .project-output.mono {
+      font-family: "Consolas", "Courier New", monospace;
+      white-space: pre-wrap;
+    }
+
+    .project-choice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 0.6rem;
+      margin-top: 0.75rem;
+    }
+
+    .project-select {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #0b1220;
+      color: var(--text);
+    }
+
+    .project-inline-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
     .project-card-actions {
       display: inline-flex;
       align-items: center;
@@ -945,9 +1031,21 @@
       </div>
       <div class="hero-text">
         <h1>Kyle Blackburn</h1>
-        <div>
+        <div class="hero-links">
           <a class="chip" href="tel:+27769526266">+27 769 526 266</a>
           <a class="chip" href="mailto:kdbburns.za@gmail.com">kdbburns.za@gmail.com</a>
+          <a class="chip" href="https://www.linkedin.com/in/kyle-blackburn-4254302a3/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1h.02C3.87 1 4.98 2.12 4.98 3.5ZM.5 8h4V24h-4V8Zm7 0h3.83v2.19h.06c.53-1.01 1.84-2.08 3.79-2.08 4.05 0 4.8 2.67 4.8 6.13V24h-4v-6.91c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V24h-4V8Z" />
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+          <a class="chip" href="https://github.com/iiwiiInsider" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 .5C5.65.5.5 5.66.5 12.02c0 5.09 3.29 9.4 7.86 10.92.57.11.78-.25.78-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.69 1.26 3.35.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.72 0-1.26.45-2.3 1.19-3.11-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.19 1.19a10.93 10.93 0 0 1 5.81 0c2.22-1.5 3.19-1.19 3.19-1.19.62 1.59.23 2.77.11 3.06.74.81 1.19 1.85 1.19 3.11 0 4.45-2.7 5.42-5.28 5.71.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.79.56a11.53 11.53 0 0 0 7.84-10.92C23.5 5.66 18.35.5 12 .5Z" />
+            </svg>
+            <span>GitHub</span>
+          </a>
         </div>
         <div class="hero-actions">
           <button class="btn ghost" data-target="summary">Summary</button>
@@ -962,11 +1060,9 @@
   <main class="sections">
     <section id="summary" class="section">
       <div class="section-header"><h2>Professional Summary</h2></div>
-      <ul>
-        <li>Full stack web developer and web engineer focused on clean, interactive experiences.</li>
-        <li>Real estate and property management background with on site estate experience.</li>
-        <li>Mindset with a focus on final desired results achieved.</li>
-      </ul>
+      <p>
+        Analytical and technology-driven PropTech professional with 4 years of exposure across real estate, digital platforms, retail technology, and financial market analysis. PPRA and SSETA certified, with formal training in property practice, full-stack web development, UX/UI design, and secure application thinking. Demonstrates strong capabilities in market analysis, business communication, technology integration, and modern property environments. Known for being structured and organised, practical, consistent, and highly detail-oriented, with a focus on improving operational efficiency and digital innovation in the property sector.
+      </p>
       <div class="section-header"><h2>Previous Companies</h2></div>
       <div class="company-logos">
         <a href="https://gadgettime.co.za/?srsltid=AfmBOor_zqGYPsPju47oNNuo_gFwNUxXGcTkl42lIILcfDRpK5rDu8kq" target="_blank" rel="noopener">
@@ -1005,124 +1101,123 @@
       <div class="section-header"><h2>Qualifications</h2></div>
 
       <div class="qualification-list">
-        <div class="qualification-item" data-pdf="Completion%20Full-Stack%20Web%20Developer%20Certificate.pdf">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-Full-Stack-Web-Developer.pdf">
           <div>
-            <div class="qualification-title">Full-Stack Web Developer Certificate</div>
-            <div class="qualification-meta">PDF available below</div>
+            <div class="qualification-title">Full-Stack Web Developer (Udemy)</div>
+            <div class="qualification-meta">Comprehensive training in front-end, back-end, and deployment workflows</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="Completion%20Full-Stack%20Web%20Developer%20Certificate.pdf">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-Full-Stack-Web-Developer.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
 
-        <div class="qualification-item" data-pdf="Matric%20Certificate%20-%20Kyle.pdf">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-Matric.pdf">
           <div>
             <div class="qualification-title">Matric Certificate</div>
-            <div class="qualification-meta">PDF available below</div>
+            <div class="qualification-meta">National Senior Certificate confirming secondary education completion</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="Matric%20Certificate%20-%20Kyle.pdf">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-Matric.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
 
-        <div class="qualification-item" data-pdf="SSETA%20-%20FETC%20Real%20estate%20Level%2004%20%28Certificate%20of%20competence%29.pdf">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-SSETA-FETC-Real-Estate-Level-04.pdf">
           <div>
             <div class="qualification-title">SSETA – FETC Real Estate Level 04 (Certificate of Competence)</div>
-            <div class="qualification-meta">PDF available below</div>
+            <div class="qualification-meta">Formal real estate competency certification aligned with NQF Level 4 standards</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="SSETA%20-%20FETC%20Real%20estate%20Level%2004%20%28Certificate%20of%20competence%29.pdf">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-SSETA-FETC-Real-Estate-Level-04.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
 
-        <div class="qualification-item" data-pdf="DayTradingMaster%20Market%20Analyisis.pdf">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-Trading-Masterclass-Market-Analysis.pdf">
           <div>
-            <div class="qualification-title">Trading Masterclass – Market Analysis</div>
-            <div class="qualification-meta">PDF available below</div>
+            <div class="qualification-title">Trading Masterclass (Udemy)</div>
+            <div class="qualification-meta">Technical market analysis training focused on chart reading and trading decisions</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="DayTradingMaster%20Market%20Analyisis.pdf">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-Trading-Masterclass-Market-Analysis.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
 
-        <div class="qualification-item" data-pdf="Certificate%20of%20Attendance%20Kyle%20Blackburn.pdf">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-FK-Consulting-Real-Estate-Practice.pdf">
           <div>
             <div class="qualification-title">FK Consulting – Real Estate Practice</div>
             <div class="qualification-meta">Extended knowledge and practice in real estate environments</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="Certificate%20of%20Attendance%20Kyle%20Blackburn.pdf">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-FK-Consulting-Real-Estate-Practice.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
 
-        <div class="qualification-item" data-pdf="Certificate%20Of%20Completion%20-%20Hands%20On%20Cybersecurity.pdf">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-Cybersecurity-Analyst.pdf">
           <div>
-            <div class="qualification-title">Cybersecurity Analyst</div>
-            <div class="qualification-meta">PDF available below</div>
+            <div class="qualification-title">Cybersecurity Analyst (Udemy)</div>
+            <div class="qualification-meta">Hands-on cybersecurity training covering risk awareness and defensive practices</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="Certificate%20Of%20Completion%20-%20Hands%20On%20Cybersecurity.pdf">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-Cybersecurity-Analyst.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
 
-        <div class="qualification-item" data-pdf="Java%20Tutorial%20for%20Complete%20Begginers%20Certificate%20of%20Completion.pdf">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-Java-Development.pdf">
           <div>
-            <div class="qualification-title">Java Development</div>
+            <div class="qualification-title">Java Development (Udemy)</div>
             <div class="qualification-meta">Java Tutorial for Complete Beginners - Completed June 2026</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="Java%20Tutorial%20for%20Complete%20Begginers%20Certificate%20of%20Completion.pdf">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-Java-Development.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
 
-        <div class="qualification-item" data-pdf="User%20Experience%20Design%20Essentials%20Adobe%20XD%20Certificate%20of%20Completion.pdf">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-UI-UX-Design.pdf">
           <div>
-            <div class="qualification-title">UI and UX Designer</div>
+            <div class="qualification-title">UI and UX Designer (Udemy)</div>
             <div class="qualification-meta">User Experience Design Essentials (Adobe XD) - Completed February 2026</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="User%20Experience%20Design%20Essentials%20Adobe%20XD%20Certificate%20of%20Completion.pdf">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-UI-UX-Design.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
 
-        <div class="qualification-item" data-pdf="Typing%20Certification.pdf">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-Typing-Skills.pdf">
           <div>
-            <div class="qualification-title">Typing Skills</div>
+            <div class="qualification-title">Typing Skills (www.typingtest.com)</div>
             <div class="qualification-meta">TypingTest certification (55 WPM, 100% accuracy) - Completed June 2026</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="Typing%20Certification.pdf">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-Typing-Skills.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
 
-        <div class="qualification-item" data-pdf="AI%20Pair%20Programming%20with%20Github%20Copilot%20Certificate%20of%20Completion.pdf">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-AI-Pair-Programming-GitHub-Copilot.pdf">
           <div>
             <div class="qualification-title">AI Pair Programming</div>
             <div class="qualification-meta">LinkedIn Learning: AI Pair Programming with GitHub Copilot - Completed June 2026</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="AI%20Pair%20Programming%20with%20Github%20Copilot%20Certificate%20of%20Completion.pdf">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-AI-Pair-Programming-GitHub-Copilot.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
-      </div>
 
-           <div class="qualification-item" data-pdf="">
+        <div class="qualification-item" data-pdf="Kyle-Blackburn-Certificate-PPRA-Professional-Practitioner-in-Real-Estate.pdf">
           <div>
             <div class="qualification-title">PPRA - Professional Practitioner in Real Estate</div>
-            <div class="qualification-meta">LinkedIn Learning: PPRA - Professional Practitioner in Real Estate - Completed June 2026</div>
+            <div class="qualification-meta">Professional designation issued by the Property Practitioners Regulatory Authority</div>
           </div>
           <div class="qualification-right">
-            <button class="btn ghost small" type="button" data-qual-pdf="">View PDF</button>
+            <button class="btn ghost small" type="button" data-qual-pdf="Kyle-Blackburn-Certificate-PPRA-Professional-Practitioner-in-Real-Estate.pdf">View PDF</button>
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
@@ -1133,19 +1228,17 @@
           <div class="pdf-toolbar-left">
             <label for="qualPdfSelect" style="color: var(--text-muted); font-weight: 700;">Documents</label>
             <select id="qualPdfSelect" class="pdf-select" aria-label="Select a PDF document">
-              <option value="Kyle%20Blackburn_2024-10-09_15-44-34.pdf">CV PDF – 2024-10-09</option>
-              <option value="Kyle%20Blackburn_2024-08-27_12-02-13.pdf">CV PDF – 2024-08-27</option>
-              <option value="Kyle%20Blackburn_2024-06-25_15-13-55.pdf">CV PDF – 2024-06-25</option>
-              <option value="Completion%20Full-Stack%20Web%20Developer%20Certificate.pdf">Certificate – Full-Stack Web Developer (Completion)</option>
-              <option value="Matric%20Certificate%20-%20Kyle.pdf">Certificate – Matric</option>
-              <option value="SSETA%20-%20FETC%20Real%20estate%20Level%2004%20%28Certificate%20of%20competence%29.pdf">Certificate – SSETA FETC Real Estate Level 04</option>
-              <option value="DayTradingMaster%20Market%20Analyisis.pdf">Certificate – Trading Masterclass (Market Analysis)</option>
-              <option value="Certificate%20of%20Attendance%20Kyle%20Blackburn.pdf">Certificate – FK Consulting (Real Estate Practice)</option>
-              <option value="Certificate%20Of%20Completion%20-%20Hands%20On%20Cybersecurity.pdf">Certificate – Cybersecurity Analyst (Udemy)</option>
-              <option value="Java%20Tutorial%20for%20Complete%20Begginers%20Certificate%20of%20Completion.pdf">Certificate – Java Development (Udemy)</option>
-              <option value="User%20Experience%20Design%20Essentials%20Adobe%20XD%20Certificate%20of%20Completion.pdf">Certificate – UI and UX Designer (Udemy)</option>
-              <option value="Typing%20Certification.pdf">Certificate – Typing Skills</option>
-              <option value="AI%20Pair%20Programming%20with%20Github%20Copilot%20Certificate%20of%20Completion.pdf">Certificate – AI Pair Programming (LinkedIn Learning)</option>
+              <option value="Kyle-Blackburn-Certificate-Full-Stack-Web-Developer.pdf">Certificate – Full-Stack Web Developer (Udemy)</option>
+              <option value="Kyle-Blackburn-Certificate-Matric.pdf">Certificate – Matric</option>
+              <option value="Kyle-Blackburn-Certificate-SSETA-FETC-Real-Estate-Level-04.pdf">Certificate – SSETA FETC Real Estate Level 04</option>
+              <option value="Kyle-Blackburn-Certificate-Trading-Masterclass-Market-Analysis.pdf">Certificate – Trading Masterclass (Udemy)</option>
+              <option value="Kyle-Blackburn-Certificate-FK-Consulting-Real-Estate-Practice.pdf">Certificate – FK Consulting (Real Estate Practice)</option>
+              <option value="Kyle-Blackburn-Certificate-Cybersecurity-Analyst.pdf">Certificate – Cybersecurity Analyst (Udemy)</option>
+              <option value="Kyle-Blackburn-Certificate-Java-Development.pdf">Certificate – Java Development (Udemy)</option>
+              <option value="Kyle-Blackburn-Certificate-UI-UX-Design.pdf">Certificate – UI and UX Designer (Udemy)</option>
+              <option value="Kyle-Blackburn-Certificate-Typing-Skills.pdf">Certificate – Typing Skills (www.typingtest.com)</option>
+              <option value="Kyle-Blackburn-Certificate-AI-Pair-Programming-GitHub-Copilot.pdf">Certificate – AI Pair Programming (LinkedIn Learning)</option>
+              <option value="Kyle-Blackburn-Certificate-PPRA-Professional-Practitioner-in-Real-Estate.pdf">Certificate – PPRA Professional Practitioner in Real Estate</option>
             </select>
           </div>
 
@@ -1155,7 +1248,7 @@
           id="qualPdfViewer"
           class="pdf-viewer"
           title="Qualifications PDF Viewer"
-          src="Kyle%20Blackburn_2024-10-09_15-44-34.pdf"
+          src="Kyle-Blackburn-Certificate-Full-Stack-Web-Developer.pdf"
         ></iframe>
       </div>
     </section>
@@ -1270,80 +1363,149 @@
         </div>
         <div class="card project-card">
           <div class="card-header">
-            <strong>GSD Event</strong>
+            <strong>Python Calculator</strong>
             <div class="project-card-actions">
               <span class="status-badge complete">Complete</span>
-              <button class="btn-arrow" data-project="gsd">View</button>
+              <button class="btn-arrow" data-project="pycalc">View</button>
             </div>
           </div>
-          <p>National event production showcase.</p>
+          <p>CLI calculator with chained operations and arithmetic functions.</p>
           <div class="tags">
-            <span class="tag">Production</span>
-            <span class="tag">Audio</span>
-            <span class="tag">Delivery</span>
+            <span class="tag">Python</span>
+            <span class="tag">CLI</span>
+            <span class="tag">Functions</span>
           </div>
         </div>
+
         <div class="card project-card">
           <div class="card-header">
-            <strong>Media Production</strong>
+            <strong>Blind Auction</strong>
             <div class="project-card-actions">
               <span class="status-badge complete">Complete</span>
-              <button class="btn-arrow" data-project="media">View</button>
+              <button class="btn-arrow" data-project="pyauction">View</button>
             </div>
           </div>
-          <p>On-site services and broadcast workflow.</p>
+          <p>Hidden-bid auction flow with winner detection and input handling.</p>
           <div class="tags">
-            <span class="tag">Video</span>
-            <span class="tag">Live</span>
-            <span class="tag">Post</span>
+            <span class="tag">Python</span>
+            <span class="tag">Loops</span>
+            <span class="tag">Dictionaries</span>
           </div>
         </div>
+
         <div class="card project-card">
           <div class="card-header">
-            <strong>Property Portfolio</strong>
+            <strong>Caesar Cipher</strong>
             <div class="project-card-actions">
               <span class="status-badge complete">Complete</span>
-              <button class="btn-arrow" data-project="property">View</button>
+              <button class="btn-arrow" data-project="pycipher">View</button>
             </div>
           </div>
-          <p>Rental portfolio oversight and reporting.</p>
+          <p>Message encoder and decoder with validation and shift normalization.</p>
           <div class="tags">
-            <span class="tag">Operations</span>
-            <span class="tag">Finance</span>
-            <span class="tag">Clients</span>
+            <span class="tag">Python</span>
+            <span class="tag">Strings</span>
+            <span class="tag">Validation</span>
           </div>
         </div>
+
         <div class="card project-card">
           <div class="card-header">
-            <strong>Trading Analytics</strong>
+            <strong>Hangman Game</strong>
             <div class="project-card-actions">
               <span class="status-badge complete">Complete</span>
-              <button class="btn-arrow" data-project="trading">View</button>
+              <button class="btn-arrow" data-project="pyhangman">View</button>
             </div>
           </div>
-          <p>Roadmap to a full trading insights suite.</p>
+          <p>Word-guessing game with lives tracking and repeat-guess protection.</p>
           <div class="tags">
-            <span class="tag">FinTech</span>
-            <span class="tag">AI</span>
-            <span class="tag">Analytics</span>
+            <span class="tag">Python</span>
+            <span class="tag">Game Logic</span>
+            <span class="tag">State</span>
           </div>
         </div>
+
         <div class="card project-card">
           <div class="card-header">
-            <strong>Crypto Token</strong>
+            <strong>Password Generator</strong>
             <div class="project-card-actions">
               <span class="status-badge complete">Complete</span>
-              <button class="btn-arrow" data-project="crypto">View</button>
+              <button class="btn-arrow" data-project="pypassword">View</button>
             </div>
           </div>
-          <p>Token concept for an IC-based ecosystem.</p>
+          <p>Random password builder using letters, numbers, and symbols.</p>
           <div class="tags">
-            <span class="tag">Motoko</span>
-            <span class="tag">Tokenomics</span>
-            <span class="tag">Blockchain</span>
+            <span class="tag">Python</span>
+            <span class="tag">Random</span>
+            <span class="tag">Utilities</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Rock Paper Scissors</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyrps">View</button>
+            </div>
+          </div>
+          <p>ASCII-based game against the computer with result comparison logic.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Game</span>
+            <span class="tag">Conditionals</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Treasure Island</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pytreasure">View</button>
+            </div>
+          </div>
+          <p>Choice-driven adventure game with branching story paths.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Story Logic</span>
+            <span class="tag">CLI</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Tip Calculator</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pytip">View</button>
+            </div>
+          </div>
+          <p>Bill-splitting utility for calculating tips and per-person totals.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Math</span>
+            <span class="tag">CLI</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Band Name Generator</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyband">View</button>
+            </div>
+          </div>
+          <p>Simple string-composition exercise using user input and output.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Beginner</span>
+            <span class="tag">Strings</span>
           </div>
         </div>
       </div>
+      <p class="project-note" style="text-align: center; margin-top: -0.5rem;">More projects to be added.</p>
     </section>
 
     <section id="roadmap" class="section">
@@ -1352,7 +1514,7 @@
       <div class="roadmap-wrap">
         <div class="roadmap-card">
           <div class="roadmap-subtitle">
-            Main goal: <strong>stable long-term income</strong> from reliable, legitimate revenue streams using skills earned through certifications and practical experience.
+            Main goal: <strong>Secure Monthly Salary</strong>
           </div>
 
           <svg id="roadmapSpider" class="roadmap-svg" viewBox="-140 -70 1040 660" role="img" aria-label="Roadmap spider diagram with step status">
@@ -1360,14 +1522,12 @@
           </svg>
 
           <div class="roadmap-legend" aria-label="Legend">
-            <span class="legend-item"><span class="legend-dot todo"></span>To do</span>
-            <span class="legend-item"><span class="legend-dot doing"></span>In progress</span>
             <span class="legend-item"><span class="legend-dot done"></span>Complete</span>
           </div>
         </div>
 
         <div class="roadmap-card">
-          <div class="roadmap-subtitle">Status checker</div>
+          <div class="roadmap-subtitle">Roadmap progress</div>
           <div id="roadmapList" class="roadmap-list" aria-label="Roadmap steps list"></div>
         </div>
       </div>
@@ -1375,32 +1535,18 @@
 
     <section id="certs" class="section">
       <div class="section-header"><h2>Certificates</h2></div>
-      <div class="grid">
-        <div class="card">
-          <div class="card-header"><strong>NQF 4 – FSA 1</strong><button class="btn" data-cert="cert1">View</button></div>
-          <p>Score: 82%</p>
-        </div>
-        <div class="card">
-          <div class="card-header"><strong>NQF 4 – FSA 2</strong><button class="btn" data-cert="cert2">View</button></div>
-          <p>Score: 91%</p>
-        </div>
-        <div class="card">
-          <div class="card-header"><strong>NQF 4 – FSA 3</strong><button class="btn" data-cert="cert3">View</button></div>
-          <p>Score: 84%</p>
-        </div>
-      </div>
       <p class="project-note">Download certificates directly:</p>
       <div class="cert-downloads">
-        <a class="btn ghost" href="Completion%20Full-Stack%20Web%20Developer%20Certificate.pdf" download>Download Full-Stack Certificate</a>
-        <a class="btn ghost" href="Matric%20Certificate%20-%20Kyle.pdf" download>Download Matric Certificate</a>
-        <a class="btn primary" href="SSETA%20-%20FETC%20Real%20estate%20Level%2004%20%28Certificate%20of%20competence%29.pdf" download>Download SSETA Certificate</a>
-        <a class="btn ghost" href="DayTradingMaster%20Market%20Analyisis.pdf" download>Download Trading Masterclass Certificate</a>
-        <a class="btn ghost" href="Certificate%20of%20Attendance%20Kyle%20Blackburn.pdf" download>Download FK Consulting Certificate</a>
-        <a class="btn ghost" href="Certificate%20Of%20Completion%20-%20Hands%20On%20Cybersecurity.pdf" download>Download Cybersecurity Analyst Certificate</a>
-        <a class="btn ghost" href="Java%20Tutorial%20for%20Complete%20Begginers%20Certificate%20of%20Completion.pdf" download>Download Java Development Certificate</a>
-        <a class="btn ghost" href="User%20Experience%20Design%20Essentials%20Adobe%20XD%20Certificate%20of%20Completion.pdf" download>Download UI and UX Designer Certificate</a>
-        <a class="btn ghost" href="Typing%20Certification.pdf" download>Download Typing Skills Certificate</a>
-        <a class="btn ghost" href="AI%20Pair%20Programming%20with%20Github%20Copilot%20Certificate%20of%20Completion.pdf" download>Download AI Pair Programming Certificate</a>
+        <a class="btn ghost" href="Kyle-Blackburn-Certificate-Full-Stack-Web-Developer.pdf" download>Download Full-Stack Certificate (Udemy)</a>
+        <a class="btn ghost" href="Kyle-Blackburn-Certificate-Matric.pdf" download>Download Matric Certificate</a>
+        <a class="btn primary" href="Kyle-Blackburn-Certificate-SSETA-FETC-Real-Estate-Level-04.pdf" download>Download SSETA Certificate</a>
+        <a class="btn ghost" href="Kyle-Blackburn-Certificate-Trading-Masterclass-Market-Analysis.pdf" download>Download Trading Masterclass Certificate (Udemy)</a>
+        <a class="btn ghost" href="Kyle-Blackburn-Certificate-FK-Consulting-Real-Estate-Practice.pdf" download>Download FK Consulting Certificate</a>
+        <a class="btn ghost" href="Kyle-Blackburn-Certificate-Cybersecurity-Analyst.pdf" download>Download Cybersecurity Analyst Certificate (Udemy)</a>
+        <a class="btn ghost" href="Kyle-Blackburn-Certificate-Java-Development.pdf" download>Download Java Development Certificate (Udemy)</a>
+        <a class="btn ghost" href="Kyle-Blackburn-Certificate-UI-UX-Design.pdf" download>Download UI and UX Designer Certificate (Udemy)</a>
+        <a class="btn ghost" href="Kyle-Blackburn-Certificate-Typing-Skills.pdf" download>Download Typing Skills Certificate (www.typingtest.com)</a>
+        <a class="btn ghost" href="Kyle-Blackburn-Certificate-AI-Pair-Programming-GitHub-Copilot.pdf" download>Download AI Pair Programming Certificate</a>
       </div>
     </section>
 
@@ -1474,15 +1620,14 @@
     const roadmapSvg = document.getElementById('roadmapSpider');
     const roadmapList = document.getElementById('roadmapList');
 
+    const roadmapMainGoalLines = ['Secure Monthly', 'Salary'];
+    const roadmapGoalStatus = 'Pending';
     const roadmapSteps = [
-      { id: 'certs-core', title: 'Cybersecurity Analyst', meta: 'Udemy completion (May 2026)', status: 'done' },
-      { id: 'fk-practice', title: 'Real estate practice experience', meta: 'FK Consulting practical exposure', status: 'done' },
-      { id: 'pde4-finals', title: 'PDE4 finals (Real Estate)', meta: 'Exam in February 2026', status: 'done' },
-      { id: 'income-map', title: 'Income map + compliance plan', meta: 'Legit revenue streams, risk checks, timelines', status: 'doing' },
-      { id: 'property-services', title: 'Property services pipeline', meta: 'Client sourcing, listings, rentals, reporting', status: 'todo' },
-      { id: 'digital-services', title: 'Digital services pipeline', meta: 'Web builds, automation, media production', status: 'todo' },
-      { id: 'trading-process', title: 'Trading process + analytics', meta: 'Rules, journaling, risk limits, backtesting', status: 'doing' },
-      { id: 'scale-cashflow', title: 'Scale stable revenue streams', meta: 'Diversified cash flow, sustainability, reviews', status: 'todo' }
+      { id: 'valid-licences', title: 'Obtain valid licences, certificates, and skills', meta: 'Core compliance and capability foundations secured', status: 'done' },
+      { id: 'industry-networking', title: 'Network and connect with people in the industry', meta: 'Built connections in the target industry', status: 'done' },
+      { id: 'continuous-skill-development', title: 'Continuous skill development', meta: 'Ongoing professional and technical growth maintained', status: 'done' },
+      { id: 'competitive-cv', title: 'Build a competitive CV', meta: 'CV updated and aligned to target roles', status: 'done' },
+      { id: 'batch-applications', title: 'Batch send applications to desired jobs', meta: 'Applications submitted across selected opportunities', status: 'done' }
     ];
 
     function getStatusFromBadge(badge) {
@@ -1519,38 +1664,7 @@
     }
 
     function applyRoadmapInputs() {
-      const cybersecurityStatus = getQualificationStatus('Cybersecurity Analyst');
-      const hasFk = hasCompletedQualification('FK Consulting');
-
-      const tradingStatus = getProjectStatus('Trading Analytics');
-      const cryptoStatus = getProjectStatus('Crypto Token');
-      const propertyStatus = getProjectStatus('Property Portfolio');
-      const mediaStatus = getProjectStatus('Media Production');
-
-      roadmapSteps.forEach(step => {
-        switch (step.id) {
-          case 'certs-core':
-            step.status = cybersecurityStatus === 'done' ? 'done' : cybersecurityStatus === 'todo' ? 'todo' : 'doing';
-            break;
-          case 'fk-practice':
-            step.status = hasFk ? 'done' : 'doing';
-            break;
-          case 'property-services':
-            step.status = propertyStatus === 'done' ? 'done' : step.status;
-            break;
-          case 'digital-services':
-            step.status = mediaStatus === 'done' ? 'done' : step.status;
-            break;
-          case 'trading-process':
-            step.status = tradingStatus === 'done' ? 'done' : step.status;
-            break;
-          case 'income-map':
-            step.status = (tradingStatus === 'done' && cryptoStatus === 'done') ? 'doing' : step.status;
-            break;
-          default:
-            break;
-        }
-      });
+      return;
     }
 
     function elNS(tag) {
@@ -1569,6 +1683,27 @@
       if (anchor) t.setAttribute('text-anchor', anchor);
       t.textContent = text;
       return t;
+    }
+
+    function svgMultilineText(x, y, lines, cls, anchor, lineHeight) {
+      const text = elNS('text');
+      setAttrs(text, { x, y });
+      if (cls) text.setAttribute('class', cls);
+      if (anchor) text.setAttribute('text-anchor', anchor);
+
+      lines.forEach((line, index) => {
+        const tspan = elNS('tspan');
+        tspan.setAttribute('x', String(x));
+        if (index === 0) {
+          tspan.setAttribute('dy', '0');
+        } else {
+          tspan.setAttribute('dy', String(lineHeight));
+        }
+        tspan.textContent = line;
+        text.appendChild(tspan);
+      });
+
+      return text;
     }
 
     function drawGrid(svg, cx, cy, radii, spokes) {
@@ -1590,6 +1725,15 @@
       }
     }
 
+    function getRectConnectorDistance(angle, halfWidth, halfHeight, padding) {
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      const safeCos = Math.abs(cos) < 0.0001 ? 0.0001 : Math.abs(cos);
+      const safeSin = Math.abs(sin) < 0.0001 ? 0.0001 : Math.abs(sin);
+      const edgeDistance = Math.min(halfWidth / safeCos, halfHeight / safeSin);
+      return edgeDistance + padding;
+    }
+
     function renderRoadmapSvg() {
       if (!roadmapSvg) return;
       while (roadmapSvg.firstChild) roadmapSvg.removeChild(roadmapSvg.firstChild);
@@ -1603,32 +1747,46 @@
 
       const goal = elNS('g');
       goal.setAttribute('class', 'rm-goal');
-      const goalCircle = elNS('circle');
-      setAttrs(goalCircle, {
-        cx,
-        cy,
-        r: 36,
-        fill: 'rgba(59, 130, 246, 0.20)',
-        stroke: 'rgba(59, 130, 246, 0.75)',
+      const goalPlate = elNS('rect');
+      setAttrs(goalPlate, {
+        x: cx - 88,
+        y: cy - 42,
+        width: 176,
+        height: 84,
+        rx: 24,
+        fill: 'rgba(15, 23, 42, 0.94)',
+        stroke: 'rgba(148, 163, 184, 0.60)',
         'stroke-width': 2
       });
-      goal.appendChild(goalCircle);
-      goal.appendChild(svgText(cx, cy - 4, 'MAIN GOAL', null, 'middle'));
-      goal.appendChild(svgText(cx, cy + 16, 'Stable revenue streams', 'meta', 'middle'));
-      roadmapSvg.appendChild(goal);
+      goal.appendChild(goalPlate);
+      goal.appendChild(svgText(cx, cy - 18, 'MAIN GOAL', 'heading', 'middle'));
+      goal.appendChild(svgMultilineText(cx, cy - 1, roadmapMainGoalLines, 'meta', 'middle', 14));
+      goal.appendChild(svgText(cx, cy + 25, roadmapGoalStatus, 'status', 'middle'));
+
+      if (!roadmapSteps.length) return;
 
       const outer = 240;
       const stepRadius = 16;
+      const goalHalfWidth = 88;
+      const goalHalfHeight = 42;
+      const goalConnectorPadding = 10;
+      const nodeConnectorPadding = 8;
 
       roadmapSteps.forEach((step, idx) => {
         const angle = (Math.PI * 2 * idx) / roadmapSteps.length - Math.PI / 2;
         const x = cx + Math.cos(angle) * outer;
         const y = cy + Math.sin(angle) * outer;
+        const goalConnectorDistance = getRectConnectorDistance(angle, goalHalfWidth, goalHalfHeight, goalConnectorPadding);
+        const nodeConnectorDistance = outer - stepRadius - nodeConnectorPadding;
+        const goalX = cx + Math.cos(angle) * goalConnectorDistance;
+        const goalY = cy + Math.sin(angle) * goalConnectorDistance;
+        const nodeX = cx + Math.cos(angle) * nodeConnectorDistance;
+        const nodeY = cy + Math.sin(angle) * nodeConnectorDistance;
 
         // Status connector line to main goal
         const conn = elNS('line');
         conn.setAttribute('class', `rm-conn ${step.status}`);
-        setAttrs(conn, { x1: cx, y1: cy, x2: x, y2: y });
+        setAttrs(conn, { x1: goalX, y1: goalY, x2: nodeX, y2: nodeY });
         roadmapSvg.appendChild(conn);
 
         const g = elNS('g');
@@ -1658,6 +1816,8 @@
 
         roadmapSvg.appendChild(g);
       });
+
+      roadmapSvg.appendChild(goal);
     }
 
     function renderRoadmapList() {
@@ -1939,165 +2099,290 @@
           </div>
         </article>
       `,
-      gsd: `
+      pycalc: `
         <article class="project-modal">
           <div class="project-header">
             <div>
-              <h2>GSD 2025 Event</h2>
-              <p class="project-subtitle">3-day national German Shepherd showcase.</p>
+              <h2>Python Calculator</h2>
+              <p class="project-subtitle">Command-line calculator with reusable arithmetic operations.</p>
             </div>
             <span class="status-badge complete">Complete</span>
           </div>
           <div class="project-layout">
             <div class="project-panel">
-              <h3 style="color: #fbbf24;">Production Summary</h3>
-              <ul class="project-list">
-                <li>Production lead & audio engineering</li>
-                <li>Multi-day show scheduling</li>
-                <li>On-site team coordination</li>
-              </ul>
+              <h3>Live demo</h3>
+              <div class="project-actions">
+                <input id="pyCalcNum1" type="number" value="12" class="project-input" placeholder="First number" />
+                <select id="pyCalcOp" class="project-select">
+                  <option value="+">+</option>
+                  <option value="-">-</option>
+                  <option value="*">*</option>
+                  <option value="/">/</option>
+                </select>
+                <input id="pyCalcNum2" type="number" value="4" class="project-input" placeholder="Second number" />
+                <button onclick="runPyCalc()" class="project-btn primary">Calculate</button>
+                <button onclick="reusePyCalcResult()" class="project-btn ghost">Use result</button>
+              </div>
+              <div id="pyCalcResult" class="project-output mono" style="margin-top: 0.8rem;">12 + 4 = 16</div>
             </div>
             <div class="project-panel">
-              <div class="project-kpis">
-                <div class="kpi">
-                  <div style="font-size: 1.1rem; font-weight: 800;">3 Days</div>
-                  <div class="project-note">National event</div>
-                </div>
-                <div class="kpi">
-                  <div style="font-size: 1.1rem; font-weight: 800;">Audio + Stage</div>
-                  <div class="project-note">Full production</div>
-                </div>
-                <div class="kpi">
-                  <div style="font-size: 1.1rem; font-weight: 800;">Complete</div>
-                  <div class="project-note">Delivered</div>
-                </div>
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Function mapping with dictionaries</li>
+                <li>Loop-driven CLI workflows</li>
+                <li>Basic defensive programming</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      `,
+      pyauction: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Blind Auction</h2>
+              <p class="project-subtitle">Multi-user bidding flow with highest-bid winner selection.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <h3>Live demo</h3>
+              <div id="pyAuctionList" class="project-stack" style="margin-bottom: 0.8rem;"></div>
+              <div class="project-actions">
+                <input id="pyAuctionName" type="text" class="project-input" placeholder="Bidder name" />
+                <input id="pyAuctionBid" type="number" min="1" step="0.01" class="project-input" placeholder="Bid amount" />
+                <button onclick="addAuctionBid()" class="project-btn primary">Add bid</button>
+                <button onclick="closeAuctionDemo()" class="project-btn success">Close auction</button>
+              </div>
+              <div id="pyAuctionResult" class="project-output" style="margin-top: 0.8rem;">Add bids to find the highest bidder.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Input validation with try/except</li>
+                <li>Dictionary iteration and comparisons</li>
+                <li>Interactive console flow control</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      `,
+      pycipher: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Caesar Cipher</h2>
+              <p class="project-subtitle">Text encoder/decoder with clean validation around user input.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <h3>Live demo</h3>
+              <textarea id="pyCipherText" class="project-input" rows="4" placeholder="Type your message">hello world</textarea>
+              <div class="project-actions">
+                <select id="pyCipherMode" class="project-select">
+                  <option value="encode">Encode</option>
+                  <option value="decode">Decode</option>
+                </select>
+                <input id="pyCipherShift" type="number" value="5" class="project-input" placeholder="Shift" />
+                <button onclick="runPyCipher()" class="project-btn primary">Run cipher</button>
+              </div>
+              <div id="pyCipherResult" class="project-output mono" style="margin-top: 0.8rem;">mjqqt btwqi</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>String processing</li>
+                <li>Input validation loops</li>
+                <li>Index-based transformation logic</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      `,
+      pyhangman: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Hangman Game</h2>
+              <p class="project-subtitle">Word-guessing game with lives, stages, and guessed-letter tracking.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <h3>Live demo</h3>
+              <div id="pyHangmanWord" class="project-output mono">_ _ _ _ _ _</div>
+              <div class="project-inline-stats">
+                <span id="pyHangmanLives">Lives: 6</span>
+                <span id="pyHangmanGuesses">Guessed: none</span>
+              </div>
+              <div class="project-actions">
+                <input id="pyHangmanGuess" type="text" maxlength="1" class="project-input" placeholder="Guess a letter" />
+                <button onclick="guessHangmanLetter()" class="project-btn primary">Guess</button>
+                <button onclick="resetHangmanDemo()" class="project-btn ghost">Restart</button>
+              </div>
+              <div id="pyHangmanStatus" class="project-output" style="margin-top: 0.8rem;">Guess a letter to start.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Game state management</li>
+                <li>Lists and random selection</li>
+                <li>Conditional control flow</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      `,
+      pypassword: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Password Generator</h2>
+              <p class="project-subtitle">Random password builder using configurable character groups.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <h3>Live demo</h3>
+              <div class="project-actions">
+                <input id="pyPassLetters" type="number" min="1" value="6" class="project-input" placeholder="Letters" />
+                <input id="pyPassSymbols" type="number" min="0" value="2" class="project-input" placeholder="Symbols" />
+                <input id="pyPassNumbers" type="number" min="0" value="2" class="project-input" placeholder="Numbers" />
+                <button onclick="generatePyPassword()" class="project-btn primary">Generate</button>
+              </div>
+              <div id="pyPassResult" class="project-output mono" style="margin-top: 0.8rem;">Generate a password.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Randomized output generation</li>
+                <li>Loops and sequence handling</li>
+                <li>Command-line utility design</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      `,
+      pyrps: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Rock Paper Scissors</h2>
+              <p class="project-subtitle">Classic game logic with ASCII visuals and computer choice generation.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <h3>Live demo</h3>
+              <div class="project-choice-grid">
+                <button onclick="playPyRps('rock')" class="project-btn ghost">Rock</button>
+                <button onclick="playPyRps('paper')" class="project-btn ghost">Paper</button>
+                <button onclick="playPyRps('scissors')" class="project-btn ghost">Scissors</button>
+              </div>
+              <div id="pyRpsResult" class="project-output mono" style="margin-top: 0.8rem;">Choose rock, paper, or scissors.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Random module usage</li>
+                <li>Branching decision trees</li>
+                <li>Input boundary checks</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      `,
+      pytreasure: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Treasure Island</h2>
+              <p class="project-subtitle">Branching text adventure driven by user decisions.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <h3>Live demo</h3>
+              <div id="pyTreasureStory" class="project-output" style="min-height: 100px;">You are at a crossroads. Which direction do you want to take?</div>
+              <div id="pyTreasureChoices" class="project-choice-grid"></div>
+              <div class="project-actions">
+                <button onclick="resetTreasureDemo()" class="project-btn ghost">Restart adventure</button>
               </div>
             </div>
-          </div>
-        </article>
-      `,
-      media: `
-        <article class="project-modal">
-          <div class="project-header">
-            <div>
-              <h2>Media Production</h2>
-              <p class="project-subtitle">On-site capture, live mixing, and post.</p>
-            </div>
-            <span class="status-badge complete">Complete</span>
-          </div>
-          <div class="project-layout">
             <div class="project-panel">
-              <h3>Services</h3>
+              <h3>Skills demonstrated</h3>
               <ul class="project-list">
-                <li>Professional video production</li>
-                <li>Live audio mixing</li>
-                <li>Live streaming</li>
-                <li>Photography & post-production</li>
-              </ul>
-            </div>
-            <div class="project-panel">
-              <h3>Workflow</h3>
-              <ul class="project-list">
-                <li>Pre-production planning</li>
-                <li>On-site delivery</li>
-                <li>Post-production edits</li>
+                <li>Nested conditionals</li>
+                <li>Interactive storytelling logic</li>
+                <li>User input normalization</li>
               </ul>
             </div>
           </div>
         </article>
       `,
-      property: `
+      pytip: `
         <article class="project-modal">
           <div class="project-header">
             <div>
-              <h2>Property Portfolio</h2>
-              <p class="project-subtitle">End-to-end rental management operations.</p>
+              <h2>Tip Calculator</h2>
+              <p class="project-subtitle">Quick bill-splitting tool for group payments.</p>
             </div>
             <span class="status-badge complete">Complete</span>
           </div>
           <div class="project-layout">
             <div class="project-panel">
-              <div class="project-kpis">
-                <div class="kpi">
-                  <div style="font-size: 1.1rem; font-weight: 800;">12+</div>
-                  <div class="project-note">Rental units</div>
-                </div>
-                <div class="kpi">
-                  <div style="font-size: 1.1rem; font-weight: 800;">Full-service</div>
-                  <div class="project-note">Operations</div>
-                </div>
-                <div class="kpi">
-                  <div style="font-size: 1.1rem; font-weight: 800;">Reporting</div>
-                  <div class="project-note">Monthly statements</div>
-                </div>
+              <h3>Live demo</h3>
+              <div class="project-actions">
+                <input id="pyTipBill" type="number" min="0" step="0.01" value="850" class="project-input" placeholder="Bill total" />
+                <input id="pyTipPercent" type="number" min="0" value="12" class="project-input" placeholder="Tip %" />
+                <input id="pyTipPeople" type="number" min="1" value="4" class="project-input" placeholder="People" />
+                <button onclick="runTipCalculator()" class="project-btn primary">Split bill</button>
               </div>
+              <div id="pyTipResult" class="project-output mono" style="margin-top: 0.8rem;">Each person should pay: R238.00</div>
             </div>
             <div class="project-panel">
-              <h3>Responsibilities</h3>
+              <h3>Skills demonstrated</h3>
               <ul class="project-list">
-                <li>Tenant acquisition & onboarding</li>
-                <li>Lease management</li>
-                <li>Maintenance coordination</li>
-                <li>Financial reporting</li>
+                <li>Basic arithmetic workflows</li>
+                <li>Numeric type conversion</li>
+                <li>Formatted console output</li>
               </ul>
             </div>
           </div>
         </article>
       `,
-      trading: `
+      pyband: `
         <article class="project-modal">
           <div class="project-header">
             <div>
-              <h2>Trading Analytics Platform</h2>
-              <p class="project-subtitle">Building a full-featured market insights suite.</p>
+              <h2>Band Name Generator</h2>
+              <p class="project-subtitle">Simple introductory project combining user input into a generated result.</p>
             </div>
             <span class="status-badge complete">Complete</span>
           </div>
           <div class="project-layout">
             <div class="project-panel">
-              <h3>Planned features</h3>
-              <ul class="project-list">
-                <li>Real-time market data</li>
-                <li>Portfolio tracking</li>
-                <li>AI trade suggestions</li>
-                <li>Strategy backtesting</li>
-              </ul>
+              <h3>Live demo</h3>
+              <div class="project-actions">
+                <input id="pyBandCity" type="text" class="project-input" placeholder="City of birth" value="Cape Town" />
+                <input id="pyBandPet" type="text" class="project-input" placeholder="Pet name" value="Nova" />
+                <button onclick="generateBandName()" class="project-btn primary">Generate</button>
+              </div>
+              <div id="pyBandResult" class="project-output mono" style="margin-top: 0.8rem;">Your band name could be: Cape Town Nova</div>
             </div>
             <div class="project-panel">
-              <h3>Focus</h3>
+              <h3>Skills demonstrated</h3>
               <ul class="project-list">
-                <li>Multi-device experience</li>
-                <li>Transparent performance metrics</li>
-                <li>Secure data handling</li>
-              </ul>
-            </div>
-          </div>
-        </article>
-      `,
-      crypto: `
-        <article class="project-modal">
-          <div class="project-header">
-            <div>
-              <h2>Cryptocurrency Token</h2>
-              <p class="project-subtitle">Token concept for an IC-based ecosystem.</p>
-            </div>
-            <span class="status-badge complete">Complete</span>
-          </div>
-          <div class="project-layout">
-            <div class="project-panel">
-              <h3>Plan</h3>
-              <ul class="project-list">
-                <li>Motoko smart contract foundation</li>
-                <li>Tokenomics + emission schedule</li>
-                <li>Governance utility</li>
-              </ul>
-            </div>
-            <div class="project-panel">
-              <h3>Next steps</h3>
-              <ul class="project-list">
-                <li>MVP token deploy</li>
-                <li>Wallet integrations</li>
-                <li>Launch strategy</li>
+                <li>Input and output handling</li>
+                <li>String concatenation</li>
+                <li>Basic CLI interaction design</li>
               </ul>
             </div>
           </div>
@@ -2349,6 +2634,219 @@
           renderSecrets();
         };
         renderSecrets();
+      },
+      pycalc: () => {
+        const scope = modalInner;
+        let lastResult = 16;
+        window.runPyCalc = function() {
+          const num1 = Number(scope.querySelector('#pyCalcNum1')?.value || 0);
+          const num2 = Number(scope.querySelector('#pyCalcNum2')?.value || 0);
+          const op = scope.querySelector('#pyCalcOp')?.value || '+';
+          let result;
+          if (op === '+') result = num1 + num2;
+          if (op === '-') result = num1 - num2;
+          if (op === '*') result = num1 * num2;
+          if (op === '/') result = num2 === 0 ? 'Error: Division by zero is not allowed.' : num1 / num2;
+          lastResult = typeof result === 'number' ? result : lastResult;
+          const output = scope.querySelector('#pyCalcResult');
+          if (output) output.textContent = `${num1} ${op} ${num2} = ${typeof result === 'number' ? Number(result.toFixed(4)) : result}`;
+        };
+        window.reusePyCalcResult = function() {
+          const input = scope.querySelector('#pyCalcNum1');
+          if (input) input.value = String(lastResult);
+        };
+        window.runPyCalc();
+      },
+      pyauction: () => {
+        const scope = modalInner;
+        let bids = [
+          { name: 'Kyle', amount: 1200 },
+          { name: 'Alex', amount: 950 }
+        ];
+        const renderBids = () => {
+          const list = scope.querySelector('#pyAuctionList');
+          if (!list) return;
+          list.innerHTML = bids.map((bid, index) => `
+            <div class="stack-item"><strong>${index + 1}. ${bid.name}</strong><div class="project-note">Bid: R ${bid.amount.toFixed(2)}</div></div>
+          `).join('');
+        };
+        window.addAuctionBid = function() {
+          const nameInput = scope.querySelector('#pyAuctionName');
+          const bidInput = scope.querySelector('#pyAuctionBid');
+          const name = nameInput?.value.trim();
+          const amount = Number(bidInput?.value || 0);
+          if (!name || amount <= 0) return;
+          bids.push({ name, amount });
+          if (nameInput) nameInput.value = '';
+          if (bidInput) bidInput.value = '';
+          renderBids();
+        };
+        window.closeAuctionDemo = function() {
+          const result = scope.querySelector('#pyAuctionResult');
+          if (!result || !bids.length) return;
+          const winner = bids.reduce((best, current) => current.amount > best.amount ? current : best, bids[0]);
+          result.textContent = `Auction complete! Winner: ${winner.name} with a bid of R ${winner.amount.toFixed(2)}.`;
+        };
+        renderBids();
+      },
+      pycipher: () => {
+        const scope = modalInner;
+        const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+        window.runPyCipher = function() {
+          const text = scope.querySelector('#pyCipherText')?.value || '';
+          const mode = scope.querySelector('#pyCipherMode')?.value || 'encode';
+          const shift = Number(scope.querySelector('#pyCipherShift')?.value || 0) % alphabet.length;
+          let result = '';
+          for (const char of text) {
+            if (/[a-z]/i.test(char)) {
+              const lower = char === char.toLowerCase();
+              const base = lower ? alphabet : alphabet.toUpperCase();
+              const pos = base.indexOf(char);
+              const next = mode === 'encode' ? (pos + shift) % 26 : (pos - shift + 26) % 26;
+              result += base[next];
+            } else if (char === ' ') {
+              result += char;
+            }
+          }
+          const output = scope.querySelector('#pyCipherResult');
+          if (output) output.textContent = result || 'Message may only contain letters and spaces.';
+        };
+        window.runPyCipher();
+      },
+      pyhangman: () => {
+        const scope = modalInner;
+        const words = ['python', 'debug', 'market', 'estate', 'cipher'];
+        let chosenWord = '';
+        let lives = 6;
+        let guessedLetters = [];
+        const render = (message) => {
+          const wordEl = scope.querySelector('#pyHangmanWord');
+          const livesEl = scope.querySelector('#pyHangmanLives');
+          const guessesEl = scope.querySelector('#pyHangmanGuesses');
+          const statusEl = scope.querySelector('#pyHangmanStatus');
+          const display = chosenWord.split('').map(letter => guessedLetters.includes(letter) ? letter : '_').join(' ');
+          if (wordEl) wordEl.textContent = display;
+          if (livesEl) livesEl.textContent = `Lives: ${lives}`;
+          if (guessesEl) guessesEl.textContent = `Guessed: ${guessedLetters.join(', ') || 'none'}`;
+          if (statusEl && message) statusEl.textContent = message;
+        };
+        window.resetHangmanDemo = function() {
+          chosenWord = words[Math.floor(Math.random() * words.length)];
+          lives = 6;
+          guessedLetters = [];
+          render('Guess a letter to start.');
+        };
+        window.guessHangmanLetter = function() {
+          const input = scope.querySelector('#pyHangmanGuess');
+          const guess = input?.value.toLowerCase().trim() || '';
+          if (input) input.value = '';
+          if (!/^[a-z]$/.test(guess)) {
+            render('Enter a single letter.');
+            return;
+          }
+          if (guessedLetters.includes(guess)) {
+            render(`You already guessed '${guess}'. Try another letter.`);
+            return;
+          }
+          guessedLetters.push(guess);
+          if (!chosenWord.includes(guess)) lives -= 1;
+          const solved = chosenWord.split('').every(letter => guessedLetters.includes(letter));
+          if (solved) {
+            render('You win!');
+            return;
+          }
+          if (lives <= 0) {
+            const statusEl = scope.querySelector('#pyHangmanStatus');
+            render(`You lose. The word was: ${chosenWord}`);
+            if (statusEl) statusEl.textContent = `You lose. The word was: ${chosenWord}`;
+            return;
+          }
+          render(chosenWord.includes(guess) ? `Good guess: ${guess}` : `Nope, '${guess}' is not in the word.`);
+        };
+        window.resetHangmanDemo();
+      },
+      pypassword: () => {
+        const scope = modalInner;
+        const letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const numbers = '0123456789';
+        const symbols = '!#$%&()*+';
+        const pick = (source) => source[Math.floor(Math.random() * source.length)];
+        window.generatePyPassword = function() {
+          const letterCount = Number(scope.querySelector('#pyPassLetters')?.value || 0);
+          const symbolCount = Number(scope.querySelector('#pyPassSymbols')?.value || 0);
+          const numberCount = Number(scope.querySelector('#pyPassNumbers')?.value || 0);
+          let password = '';
+          for (let i = 0; i < letterCount; i++) password += pick(letters);
+          for (let i = 0; i < symbolCount; i++) password += pick(symbols);
+          for (let i = 0; i < numberCount; i++) password += pick(numbers);
+          password = password.split('').sort(() => Math.random() - 0.5).join('');
+          const output = scope.querySelector('#pyPassResult');
+          if (output) output.textContent = password || 'Choose at least one character.';
+        };
+        window.generatePyPassword();
+      },
+      pyrps: () => {
+        const scope = modalInner;
+        const emoji = { rock: 'Rock', paper: 'Paper', scissors: 'Scissors' };
+        window.playPyRps = function(choice) {
+          const options = ['rock', 'paper', 'scissors'];
+          const computer = options[Math.floor(Math.random() * options.length)];
+          let result = 'It\'s a draw!';
+          if (choice !== computer) {
+            const wins = (choice === 'rock' && computer === 'scissors') || (choice === 'paper' && computer === 'rock') || (choice === 'scissors' && computer === 'paper');
+            result = wins ? 'You win!' : 'You lose!';
+          }
+          const output = scope.querySelector('#pyRpsResult');
+          if (output) output.textContent = `You chose ${emoji[choice]}\nComputer chose ${emoji[computer]}\n${result}`;
+        };
+      },
+      pytreasure: () => {
+        const scope = modalInner;
+        const storyEl = () => scope.querySelector('#pyTreasureStory');
+        const choicesEl = () => scope.querySelector('#pyTreasureChoices');
+        const renderStep = (text, choices) => {
+          const story = storyEl();
+          const choicesWrap = choicesEl();
+          if (story) story.textContent = text;
+          if (!choicesWrap) return;
+          choicesWrap.innerHTML = choices.map(choice => `<button onclick="advanceTreasureDemo('${choice.value}')" class="project-btn ghost">${choice.label}</button>`).join('');
+        };
+        window.advanceTreasureDemo = function(step) {
+          if (step === 'left') return renderStep('You have come to a lake. There is an island in the middle of the lake.', [{ label: 'Wait', value: 'wait' }, { label: 'Swim', value: 'swim' }]);
+          if (step === 'right') return renderStep('You fell into a hole. Game over.', []);
+          if (step === 'wait') return renderStep('You arrive at the island unharmed. There is a house with 3 doors.', [{ label: 'Red', value: 'red' }, { label: 'Yellow', value: 'yellow' }, { label: 'Blue', value: 'blue' }]);
+          if (step === 'swim') return renderStep('You get attacked by an angry trout. Game over.', []);
+          if (step === 'red') return renderStep('It\'s a room full of fire. Game over.', []);
+          if (step === 'yellow') return renderStep('You found the treasure! Congrats!', []);
+          if (step === 'blue') return renderStep('You enter a room of beasts. Game over.', []);
+        };
+        window.resetTreasureDemo = function() {
+          renderStep('You are at a crossroads. Which direction do you want to take?', [{ label: 'Left', value: 'left' }, { label: 'Right', value: 'right' }]);
+        };
+        window.resetTreasureDemo();
+      },
+      pytip: () => {
+        const scope = modalInner;
+        window.runTipCalculator = function() {
+          const bill = Number(scope.querySelector('#pyTipBill')?.value || 0);
+          const tip = Number(scope.querySelector('#pyTipPercent')?.value || 0);
+          const people = Math.max(1, Number(scope.querySelector('#pyTipPeople')?.value || 1));
+          const total = bill + (bill * tip / 100);
+          const each = total / people;
+          const output = scope.querySelector('#pyTipResult');
+          if (output) output.textContent = `Each person should pay: R${each.toFixed(2)}`;
+        };
+        window.runTipCalculator();
+      },
+      pyband: () => {
+        const scope = modalInner;
+        window.generateBandName = function() {
+          const city = scope.querySelector('#pyBandCity')?.value.trim() || 'Your City';
+          const pet = scope.querySelector('#pyBandPet')?.value.trim() || 'Your Pet';
+          const output = scope.querySelector('#pyBandResult');
+          if (output) output.textContent = `Your band name could be: ${city} ${pet}`;
+        };
+        window.generateBandName();
       }
     };
 
