@@ -1597,6 +1597,22 @@
             <span class="tag">Strings</span>
           </div>
         </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Blackjack CLI Game</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyblackjack">View</button>
+            </div>
+          </div>
+          <p>Terminal blackjack with ANSI colors, card scoring, and dealer AI rules.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Game Logic</span>
+            <span class="tag">CLI</span>
+          </div>
+        </div>
       </div>
       <p class="project-note" style="text-align: center; margin-top: -0.5rem;">More projects to be added.</p>
     </section>
@@ -2763,6 +2779,43 @@
             </div>
           </div>
         </article>
+      `,
+      pyblackjack: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Python Blackjack (CLI)</h2>
+              <p class="project-subtitle">Interactive blackjack demo with hit/stand flow, ace handling, and dealer draw rules.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <h3>Live demo</h3>
+              <div id="pyBlackjackPlayer" class="project-output mono">Player: [] (Score: 0)</div>
+              <div id="pyBlackjackDealer" class="project-output mono" style="margin-top: 0.6rem;">Dealer: [] (Score: 0)</div>
+              <div id="pyBlackjackStatus" class="project-output" style="margin-top: 0.6rem;">Start a new round to play.</div>
+              <div class="project-actions">
+                <button onclick="startBlackjackRound()" class="project-btn primary">New Round</button>
+                <button onclick="blackjackHit()" class="project-btn success">Hit</button>
+                <button onclick="blackjackStand()" class="project-btn ghost">Stand</button>
+              </div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Game-state loops and turn sequencing</li>
+                <li>Conditionals and score evaluation</li>
+                <li>Reusable Python functions</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Random</span>
+                <span class="tag">Game State</span>
+              </div>
+            </div>
+          </div>
+        </article>
       `
     };
 
@@ -3223,6 +3276,98 @@
           if (output) output.textContent = `Your band name could be: ${city} ${pet}`;
         };
         window.generateBandName();
+      },
+      pyblackjack: () => {
+        const scope = modalInner;
+        const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        const state = {
+          player: [],
+          dealer: [],
+          over: true
+        };
+
+        const drawCard = () => cards[Math.floor(Math.random() * cards.length)];
+        const scoreHand = (hand) => {
+          let score = 0;
+          let aces = 0;
+          hand.forEach(card => {
+            if (card === 'A') {
+              score += 11;
+              aces += 1;
+            } else if (['J', 'Q', 'K'].includes(card)) {
+              score += 10;
+            } else {
+              score += Number(card);
+            }
+          });
+          while (score > 21 && aces > 0) {
+            score -= 10;
+            aces -= 1;
+          }
+          return score;
+        };
+
+        const render = (message = '') => {
+          const playerScore = scoreHand(state.player);
+          const dealerScore = scoreHand(state.dealer);
+          const playerEl = scope.querySelector('#pyBlackjackPlayer');
+          const dealerEl = scope.querySelector('#pyBlackjackDealer');
+          const statusEl = scope.querySelector('#pyBlackjackStatus');
+          if (playerEl) playerEl.textContent = `Player: [${state.player.join(', ')}] (Score: ${playerScore})`;
+          if (dealerEl) dealerEl.textContent = `Dealer: [${state.dealer.join(', ')}] (Score: ${dealerScore})`;
+          if (statusEl && message) statusEl.textContent = message;
+        };
+
+        const finishRound = () => {
+          const playerScore = scoreHand(state.player);
+          const dealerScore = scoreHand(state.dealer);
+          let result = 'It\'s a tie.';
+          if (playerScore > 21) result = 'You busted. Dealer wins.';
+          else if (dealerScore > 21) result = 'Dealer busted. You win!';
+          else if (playerScore > dealerScore) result = 'You win!';
+          else if (dealerScore > playerScore) result = 'Dealer wins.';
+          state.over = true;
+          render(result);
+        };
+
+        window.startBlackjackRound = function() {
+          state.player = [drawCard(), drawCard()];
+          state.dealer = [drawCard(), drawCard()];
+          state.over = false;
+          const playerScore = scoreHand(state.player);
+          if (playerScore === 21) {
+            state.over = true;
+            render('Blackjack! You win this round.');
+            return;
+          }
+          render('Round started. Choose Hit or Stand.');
+        };
+
+        window.blackjackHit = function() {
+          if (state.over) {
+            render('Start a new round first.');
+            return;
+          }
+          state.player.push(drawCard());
+          if (scoreHand(state.player) > 21) {
+            finishRound();
+            return;
+          }
+          render('Card dealt. Choose your next move.');
+        };
+
+        window.blackjackStand = function() {
+          if (state.over) {
+            render('Start a new round first.');
+            return;
+          }
+          while (scoreHand(state.dealer) < 17) {
+            state.dealer.push(drawCard());
+          }
+          finishRound();
+        };
+
+        window.startBlackjackRound();
       }
     };
 
