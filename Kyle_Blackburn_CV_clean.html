@@ -15,6 +15,13 @@
       --accent: #3b82f6;
       --accent-2: #22c55e;
       --danger: #ef4444;
+      --header-hue-a: #60a5fa;
+      --header-hue-b: #34d399;
+      --liquid-react-x: 0%;
+      --liquid-react-y: 0%;
+      --liquid-tilt: 0deg;
+      --liquid-scroll-shift: 0%;
+      --liquid-scroll-rot: 0deg;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,6 +31,96 @@
       background: linear-gradient(135deg, var(--bg) 0%, #1a233e 100%);
       color: var(--text);
       line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -18vmax;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(28px) saturate(145%);
+      will-change: transform, background-position;
+    }
+
+    body::before {
+      background:
+        conic-gradient(from 10deg at 48% 50%, rgba(59, 130, 246, 0.28), rgba(34, 197, 94, 0.14), rgba(30, 64, 175, 0.14), rgba(59, 130, 246, 0.28)),
+        radial-gradient(48% 52% at 24% 26%, rgba(59, 130, 246, 0.34) 0%, rgba(59, 130, 246, 0) 58%),
+        radial-gradient(54% 50% at 76% 30%, rgba(37, 99, 235, 0.28) 0%, rgba(37, 99, 235, 0) 56%),
+        radial-gradient(45% 50% at 44% 78%, rgba(34, 197, 94, 0.24) 0%, rgba(34, 197, 94, 0) 58%);
+      background-size: 168% 168%, 150% 150%, 155% 155%, 145% 145%;
+      background-position: 50% 50%, 20% 28%, 78% 32%, 45% 76%;
+      animation: liquidFloatA 18s ease-in-out infinite alternate, liquidSwirlA 34s linear infinite;
+      transform-origin: 50% 50%;
+      opacity: 1;
+    }
+
+    body::after {
+      background:
+        conic-gradient(from 200deg at 52% 52%, rgba(96, 165, 250, 0.18), rgba(34, 197, 94, 0.12), rgba(29, 78, 216, 0.10), rgba(96, 165, 250, 0.18)),
+        radial-gradient(44% 52% at 66% 20%, rgba(96, 165, 250, 0.26) 0%, rgba(96, 165, 250, 0) 56%),
+        radial-gradient(52% 46% at 18% 70%, rgba(34, 197, 94, 0.24) 0%, rgba(34, 197, 94, 0) 58%),
+        radial-gradient(42% 46% at 86% 82%, rgba(30, 58, 138, 0.24) 0%, rgba(30, 58, 138, 0) 56%);
+      background-size: 164% 164%, 148% 148%, 152% 152%, 142% 142%;
+      background-position: 52% 50%, 68% 18%, 20% 72%, 84% 84%;
+      animation: liquidFloatB 22s ease-in-out infinite alternate, liquidSwirlB 40s linear infinite;
+      transform-origin: 52% 48%;
+      opacity: 0.98;
+      mix-blend-mode: screen;
+    }
+
+    @keyframes liquidFloatA {
+      0% {
+        transform: translate3d(calc(-2.6% + var(--liquid-react-x)), calc(-1.2% + var(--liquid-react-y) + var(--liquid-scroll-shift)), 0) scale(1) rotate(calc(0deg + var(--liquid-tilt) + var(--liquid-scroll-rot)));
+      }
+      25% {
+        transform: translate3d(calc(1.8% + var(--liquid-react-x)), calc(-3.2% + var(--liquid-react-y) + var(--liquid-scroll-shift)), 0) scale(1.10) rotate(calc(6deg + var(--liquid-tilt) + var(--liquid-scroll-rot)));
+      }
+      60% {
+        transform: translate3d(calc(3.4% + var(--liquid-react-x)), calc(1.4% + var(--liquid-react-y) + var(--liquid-scroll-shift)), 0) scale(1.08) rotate(calc(10deg + var(--liquid-tilt) + var(--liquid-scroll-rot)));
+      }
+      100% {
+        transform: translate3d(calc(-1.8% + var(--liquid-react-x)), calc(3.2% + var(--liquid-react-y) + var(--liquid-scroll-shift)), 0) scale(1.04) rotate(calc(3deg + var(--liquid-tilt) + var(--liquid-scroll-rot)));
+      }
+    }
+
+    @keyframes liquidFloatB {
+      0% {
+        transform: translate3d(calc(2.2% + var(--liquid-react-x)), calc(1.2% + var(--liquid-react-y) + var(--liquid-scroll-shift)), 0) scale(1) rotate(calc(0deg - var(--liquid-tilt) + var(--liquid-scroll-rot)));
+      }
+      30% {
+        transform: translate3d(calc(-2.8% + var(--liquid-react-x)), calc(2.2% + var(--liquid-react-y) + var(--liquid-scroll-shift)), 0) scale(1.09) rotate(calc(-7deg - var(--liquid-tilt) + var(--liquid-scroll-rot)));
+      }
+      70% {
+        transform: translate3d(calc(-3.4% + var(--liquid-react-x)), calc(-2.4% + var(--liquid-react-y) + var(--liquid-scroll-shift)), 0) scale(1.06) rotate(calc(-12deg - var(--liquid-tilt) + var(--liquid-scroll-rot)));
+      }
+      100% {
+        transform: translate3d(calc(2.6% + var(--liquid-react-x)), calc(-3% + var(--liquid-react-y) + var(--liquid-scroll-shift)), 0) scale(1.03) rotate(calc(-4deg - var(--liquid-tilt) + var(--liquid-scroll-rot)));
+      }
+    }
+
+    @keyframes liquidSwirlA {
+      0% { background-position: calc(50% + var(--liquid-react-x)) calc(50% + var(--liquid-react-y)), calc(20% + var(--liquid-react-x)) calc(28% + var(--liquid-scroll-shift)), 78% 32%, 45% 76%; }
+      50% { background-position: calc(54% + var(--liquid-react-x)) calc(44% + var(--liquid-react-y)), calc(28% + var(--liquid-react-x)) calc(22% + var(--liquid-scroll-shift)), 70% 40%, 50% 70%; }
+      100% { background-position: calc(46% + var(--liquid-react-x)) calc(56% + var(--liquid-react-y)), calc(16% + var(--liquid-react-x)) calc(34% + var(--liquid-scroll-shift)), 82% 28%, 40% 82%; }
+    }
+
+    @keyframes liquidSwirlB {
+      0% { background-position: calc(52% + var(--liquid-react-x)) calc(50% + var(--liquid-react-y)), 68% calc(18% + var(--liquid-scroll-shift)), 20% 72%, 84% 84%; }
+      50% { background-position: calc(48% + var(--liquid-react-x)) calc(56% + var(--liquid-react-y)), 60% calc(24% + var(--liquid-scroll-shift)), 28% 66%, 78% 78%; }
+      100% { background-position: calc(56% + var(--liquid-react-x)) calc(44% + var(--liquid-react-y)), 72% calc(14% + var(--liquid-scroll-shift)), 16% 76%, 88% 86%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body::before,
+      body::after {
+        animation: none;
+      }
     }
 
     .hero {
@@ -109,6 +206,19 @@
       height: 16px;
       fill: currentColor;
       flex: 0 0 auto;
+    }
+
+    .hero-links .chip span,
+    .hero-actions .btn span {
+      background: linear-gradient(135deg, var(--header-hue-a) 0%, var(--header-hue-b) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .hero-links .chip svg {
+      color: var(--header-hue-a);
     }
 
     .hero-actions {
@@ -1115,8 +1225,8 @@
       <div class="hero-text">
         <h1>Kyle Darrell Blackburn</h1>
         <div class="hero-links">
-          <a class="chip" href="tel:+27769526266">+27 769 526 266</a>
-          <a class="chip" href="mailto:kdbburns.za@gmail.com">kdbburns.za@gmail.com</a>
+          <a class="chip" href="tel:+27769526266"><span>+27 769 526 266</span></a>
+          <a class="chip" href="mailto:kdbburns.za@gmail.com"><span>kdbburns.za@gmail.com</span></a>
           <a class="chip" href="https://www.linkedin.com/in/kyle-blackburn-4254302a3/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1h.02C3.87 1 4.98 2.12 4.98 3.5ZM.5 8h4V24h-4V8Zm7 0h3.83v2.19h.06c.53-1.01 1.84-2.08 3.79-2.08 4.05 0 4.8 2.67 4.8 6.13V24h-4v-6.91c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V24h-4V8Z" />
@@ -1131,17 +1241,17 @@
           </a>
         </div>
         <div class="hero-actions">
-          <button class="btn ghost" data-target="summary">Summary</button>
-          <button class="btn primary" data-target="projects">Projects</button>
-          <button class="btn ghost" data-target="qualifications">Qualifications</button>
-          <button class="btn ghost" data-target="roadmap">Roadmap</button>
+          <button class="btn ghost" data-target="summary"><span>Summary</span></button>
+          <button class="btn primary" data-target="projects"><span>Projects</span></button>
+          <button class="btn ghost" data-target="qualifications"><span>Qualifications</span></button>
+          <button class="btn ghost" data-target="roadmap"><span>Roadmap</span></button>
         </div>
       </div>
     </div>
   </header>
 
   <main class="sections">
-    <section id="summary" class="section">
+    <section id="summary" class="section active">
       <div class="section-header"><h2>Professional Summary</h2></div>
       <p>
         Analytical and technology-driven PropTech professional with 4 years of exposure across real estate, digital platforms, retail technology, and financial market analysis. PPRA and SSETA certified, with formal training in property practice, full-stack web development, UX/UI design, and secure application thinking. Demonstrates strong capabilities in market analysis, business communication, technology integration, and modern property environments. Known for being structured and organised, practical, consistent, and highly detail-oriented, with a focus on improving operational efficiency and digital innovation in the property sector.
@@ -1346,7 +1456,7 @@
       </div>
     </section>
 
-    <section id="projects" class="section active">
+    <section id="projects" class="section">
       <div class="section-header"><h2>Projects</h2></div>
       <div class="grid">
         <div class="card project-card">
@@ -1693,6 +1803,79 @@
     const tabs = document.querySelectorAll('.tab');
     const sections = document.querySelectorAll('.section');
     const heroButtons = document.querySelectorAll('.hero-text .btn');
+
+    function initLiquidReactivity() {
+      const root = document.documentElement;
+      const state = {
+        targetX: 0,
+        targetY: 0,
+        currentX: 0,
+        currentY: 0,
+        targetScroll: 0,
+        currentScroll: 0,
+        lastScrollY: window.scrollY || 0,
+        lastScrollT: performance.now()
+      };
+
+      const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+      const updatePointerTarget = (clientX, clientY) => {
+        const width = window.innerWidth || 1;
+        const height = window.innerHeight || 1;
+        const normalizedX = clamp(clientX / width, 0, 1);
+        const normalizedY = clamp(clientY / height, 0, 1);
+        state.targetX = (normalizedX - 0.5) * 9.2;
+        state.targetY = (normalizedY - 0.5) * 8.4;
+      };
+
+      const onScroll = () => {
+        const now = performance.now();
+        const scrollY = window.scrollY || 0;
+        const deltaY = scrollY - state.lastScrollY;
+        const deltaT = Math.max(now - state.lastScrollT, 16);
+        const velocity = clamp((deltaY / deltaT) * 2.4, -5.2, 5.2);
+        state.targetScroll = clamp((state.targetScroll * 0.72) + velocity, -5.8, 5.8);
+        state.lastScrollY = scrollY;
+        state.lastScrollT = now;
+      };
+
+      window.addEventListener('pointermove', (event) => {
+        updatePointerTarget(event.clientX, event.clientY);
+      }, { passive: true });
+
+      window.addEventListener('pointerdown', (event) => {
+        updatePointerTarget(event.clientX, event.clientY);
+      }, { passive: true });
+
+      window.addEventListener('touchstart', (event) => {
+        const touch = event.touches && event.touches[0];
+        if (touch) updatePointerTarget(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      window.addEventListener('touchmove', (event) => {
+        const touch = event.touches && event.touches[0];
+        if (touch) updatePointerTarget(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      const animate = () => {
+        state.currentX += (state.targetX - state.currentX) * 0.12;
+        state.currentY += (state.targetY - state.currentY) * 0.12;
+        state.currentScroll += (state.targetScroll - state.currentScroll) * 0.11;
+        state.targetScroll *= 0.945;
+
+        root.style.setProperty('--liquid-react-x', `${state.currentX.toFixed(3)}%`);
+        root.style.setProperty('--liquid-react-y', `${state.currentY.toFixed(3)}%`);
+        root.style.setProperty('--liquid-tilt', `${(state.currentX * 1.9).toFixed(3)}deg`);
+        root.style.setProperty('--liquid-scroll-shift', `${state.currentScroll.toFixed(3)}%`);
+        root.style.setProperty('--liquid-scroll-rot', `${(state.currentScroll * 2.2).toFixed(3)}deg`);
+
+        requestAnimationFrame(animate);
+      };
+
+      requestAnimationFrame(animate);
+    }
 
     function activateSection(id) {
       sections.forEach(section => section.classList.toggle('active', section.id === id));
@@ -3413,7 +3596,8 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    activateSection('projects');
+    activateSection('summary');
+    initLiquidReactivity();
   </script>
 </body>
 </html>
