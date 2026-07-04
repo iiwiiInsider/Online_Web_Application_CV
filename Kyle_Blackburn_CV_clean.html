@@ -26,6 +26,11 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html,
+    body {
+      min-height: 100%;
+    }
+
     body {
       font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background:
@@ -40,6 +45,7 @@
       position: relative;
       min-height: 100vh;
       overflow-x: hidden;
+      isolation: isolate;
     }
 
     body::before,
@@ -48,9 +54,14 @@
       position: fixed;
       inset: -18vmax;
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
       filter: blur(28px) saturate(145%);
       will-change: transform, background-position;
+    }
+
+    body > * {
+      position: relative;
+      z-index: 1;
     }
 
     body::before {
@@ -58,7 +69,7 @@
         conic-gradient(from 10deg at 48% 50%, rgba(59, 130, 246, 0.28), rgba(34, 197, 94, 0.14), rgba(30, 64, 175, 0.14), rgba(59, 130, 246, 0.28)),
         radial-gradient(48% 52% at 24% 26%, rgba(59, 130, 246, 0.34) 0%, rgba(59, 130, 246, 0) 58%),
         radial-gradient(54% 50% at 76% 30%, rgba(37, 99, 235, 0.28) 0%, rgba(37, 99, 235, 0) 56%),
-        radial-gradient(45% 50% at 44% 78%, rgba(34, 197, 94, 0.24) 0%, rgba(34, 197, 94, 0) 58%);
+        radial-gradient(45% 50% at 44% 78%, rgba(24, 76, 161, 0.516) 0%, rgba(34, 197, 94, 0) 58%);
       background-size: 168% 168%, 150% 150%, 155% 155%, 145% 145%;
       background-position: 50% 50%, 20% 28%, 78% 32%, 45% 76%;
       animation: liquidFloatA 18s ease-in-out infinite alternate, liquidSwirlA 34s linear infinite;
@@ -1211,6 +1222,15 @@
     }
 
     @media (max-width: 520px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      body::before,
+      body::after {
+        inset: -24vmax;
+      }
+
       .hero-image { width: 160px; height: 160px; }
       .hero-text h1 { font-size: 2rem; }
       .chip { display: block; width: 100%; text-align: center; }
