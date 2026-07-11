@@ -1776,6 +1776,102 @@
             <span class="tag">CLI</span>
           </div>
         </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Coffee Machine Simulator</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pycoffee">View</button>
+            </div>
+          </div>
+          <p>State-based drink machine flow with resources, coin handling, and change.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">State</span>
+            <span class="tag">Simulation</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Quiz Game</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyquiz">View</button>
+            </div>
+          </div>
+          <p>True/false question engine with score tracking and end-of-quiz state.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">OOP</span>
+            <span class="tag">Logic</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Hirst Painting</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyhirst">View</button>
+            </div>
+          </div>
+          <p>Dot-style generated painting inspired by Damien Hirst patterns.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">GUI</span>
+            <span class="tag">Art</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Shapes Inside Shapes</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyshapes">View</button>
+            </div>
+          </div>
+          <p>Nested polygon drawing from triangle to decagon with color variation.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Geometry</span>
+            <span class="tag">GUI</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Random Path</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyrandompath">View</button>
+            </div>
+          </div>
+          <p>Fast random-walk drawing using directional steps and color changes.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Random</span>
+            <span class="tag">GUI</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Spirograph</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyspiro">View</button>
+            </div>
+          </div>
+          <p>Circular pattern generator with rotating arcs and randomized color palette.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">GUI</span>
+            <span class="tag">Generative</span>
+          </div>
+        </div>
       </div>
       <p class="project-note" style="text-align: center; margin-top: -0.5rem;">More projects to be added.</p>
     </section>
@@ -2526,6 +2622,7 @@
     const modal = document.getElementById('modal');
     const modalInner = document.getElementById('modalInner');
     const modalClose = document.querySelector('.modal-close');
+    let activeProjectCleanup = null;
 
     const projects = {
       portfolio: `
@@ -2633,6 +2730,11 @@
                 <li>Preset generator for quick ideas</li>
                 <li>Clean typography and layout</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Typography</span>
+                <span class="tag">Inputs</span>
+                <span class="tag">Fun</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2662,6 +2764,11 @@
                 <li>Randomized layouts</li>
                 <li>Simple gamification</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Canvas</span>
+                <span class="tag">Generative</span>
+                <span class="tag">UX</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2694,6 +2801,11 @@
                 <li>Dynamic content updates</li>
                 <li>Friendly, playful UI</li>
               </ul>
+              <div class="tags">
+                <span class="tag">UI Flow</span>
+                <span class="tag">State</span>
+                <span class="tag">Fun</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2722,6 +2834,11 @@
                 <li>CRUD-style interactions</li>
                 <li>Color-coded priority</li>
               </ul>
+              <div class="tags">
+                <span class="tag">CRUD</span>
+                <span class="tag">Grid</span>
+                <span class="tag">UI</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2750,6 +2867,11 @@
                 <li>Friendly social layout</li>
                 <li>Simple content moderation flow</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Live Feed</span>
+                <span class="tag">Form</span>
+                <span class="tag">UX</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2787,6 +2909,11 @@
                 <li>Loop-driven CLI workflows</li>
                 <li>Basic defensive programming</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">CLI</span>
+                <span class="tag">Functions</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2819,6 +2946,11 @@
                 <li>Dictionary iteration and comparisons</li>
                 <li>Interactive console flow control</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Loops</span>
+                <span class="tag">Dictionaries</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2853,6 +2985,11 @@
                 <li>Input validation loops</li>
                 <li>Index-based transformation logic</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Strings</span>
+                <span class="tag">Validation</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2888,6 +3025,11 @@
                 <li>Lists and random selection</li>
                 <li>Conditional control flow</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Game Logic</span>
+                <span class="tag">State</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2919,6 +3061,11 @@
                 <li>Loops and sequence handling</li>
                 <li>Command-line utility design</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Random</span>
+                <span class="tag">Utilities</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2949,6 +3096,11 @@
                 <li>Branching decision trees</li>
                 <li>Input boundary checks</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Game</span>
+                <span class="tag">Conditionals</span>
+              </div>
             </div>
           </div>
         </article>
@@ -2978,6 +3130,11 @@
                 <li>Interactive storytelling logic</li>
                 <li>User input normalization</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Story Logic</span>
+                <span class="tag">CLI</span>
+              </div>
             </div>
           </div>
         </article>
@@ -3009,6 +3166,11 @@
                 <li>Numeric type conversion</li>
                 <li>Formatted console output</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Math</span>
+                <span class="tag">CLI</span>
+              </div>
             </div>
           </div>
         </article>
@@ -3039,6 +3201,11 @@
                 <li>String concatenation</li>
                 <li>Basic CLI interaction design</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Beginner</span>
+                <span class="tag">Strings</span>
+              </div>
             </div>
           </div>
         </article>
@@ -3114,6 +3281,233 @@
                 <li>Input validation and error handling</li>
                 <li>Loop and state management</li>
               </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Game Logic</span>
+                <span class="tag">CLI</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      pycoffee: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Coffee Machine Simulator</h2>
+              <p class="project-subtitle">Resource checks, coin input, transaction flow and reporting</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <h3>Live demo</h3>
+              <div id="pyCoffeeReport" class="project-output mono">Water: 300ml\nMilk: 200ml\nCoffee: 100g\nMoney: $0.00\nCredit: $0.00</div>
+              <div class="project-actions" style="margin-top: 0.8rem;">
+                <select id="pyCoffeeDrink" class="project-select">
+                  <option value="espresso">Espresso ($1.50)</option>
+                  <option value="latte">Latte ($2.50)</option>
+                  <option value="cappuccino">Cappuccino ($3.00)</option>
+                </select>
+                <input id="pyCoffeeQuarters" type="number" min="0" value="0" class="project-input" placeholder="Quarters" />
+                <input id="pyCoffeeDimes" type="number" min="0" value="0" class="project-input" placeholder="Dimes" />
+                <input id="pyCoffeeNickels" type="number" min="0" value="0" class="project-input" placeholder="Nickels" />
+                <input id="pyCoffeePennies" type="number" min="0" value="0" class="project-input" placeholder="Pennies" />
+              </div>
+              <div class="project-actions">
+                <button onclick="insertCoffeeCoins()" class="project-btn primary">Insert coins</button>
+                <button onclick="brewCoffeeDrink()" class="project-btn success">Buy drink</button>
+                <button onclick="refillCoffeeMachine()" class="project-btn ghost">Refill</button>
+              </div>
+              <div id="pyCoffeeResult" class="project-output" style="margin-top: 0.8rem;">Insert coins, then buy a drink.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Resource sufficiency checks</li>
+                <li>Coin processing and change logic</li>
+                <li>State updates for inventory and profit</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">State</span>
+                <span class="tag">Simulation</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      pyquiz: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Quiz Game</h2>
+              <p class="project-subtitle">Interactive true/false flow.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <h3>Live demo</h3>
+              <div id="pyQuizQuestion" class="project-output" style="min-height: 82px;">Press Start Quiz to begin.</div>
+              <div id="pyQuizMeta" class="project-inline-stats">
+                <span id="pyQuizProgress">Question: 0/0</span>
+                <span id="pyQuizScore">Score: 0</span>
+              </div>
+              <div class="project-actions">
+                <button onclick="startPyQuiz()" class="project-btn primary">Start quiz</button>
+                <button onclick="answerPyQuiz(true)" class="project-btn success">True</button>
+                <button onclick="answerPyQuiz(false)" class="project-btn danger">False</button>
+              </div>
+              <div id="pyQuizResult" class="project-output" style="margin-top: 0.8rem;">Awaiting quiz start.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Question model and quiz-brain flow</li>
+                <li>Score and progress tracking</li>
+                <li>Boolean answer validation</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">OOP</span>
+                <span class="tag">Logic</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      pyhirst: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Hirst Painting Generator</h2>
+              <p class="project-subtitle">A dot painting inspired by Hirst.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <canvas id="pyHirstCanvas" width="420" height="420" class="project-canvas" style="border-color: #e5e7eb;"></canvas>
+              <div class="project-actions" style="justify-content: center;">
+                <button onclick="generateHirstPainting()" class="project-btn primary">Generate painting</button>
+                <button onclick="clearHirstPainting()" class="project-btn ghost">Clear</button>
+              </div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Pattern-based drawing loops</li>
+                <li>Palette-driven random color generation</li>
+                <li>Coordinate systems and spacing</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">GUI</span>
+                <span class="tag">Art</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      pyshapes: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Shapes Inside Shapes</h2>
+              <p class="project-subtitle">Polygon progression from triangle to decagon from a single center point.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <canvas id="pyShapesCanvas" width="420" height="420" class="project-canvas"></canvas>
+              <div class="project-actions" style="justify-content: center;">
+                <button onclick="drawPyShapes()" class="project-btn primary">Draw shapes</button>
+                <button onclick="clearPyShapes()" class="project-btn ghost">Clear</button>
+              </div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Regular polygon geometry</li>
+                <li>Iterative drawing by side count</li>
+                <li>Color sequencing</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Geometry</span>
+                <span class="tag">GUI</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      pyrandompath: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Random Path</h2>
+              <p class="project-subtitle">Random walk rendering with directional constraints and boundary checks.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <canvas id="pyRandomPathCanvas" width="420" height="420" class="project-canvas"></canvas>
+              <div class="project-actions" style="justify-content: center;">
+                <button onclick="startRandomPathDemo()" class="project-btn primary">Start</button>
+                <button onclick="stopRandomPathDemo()" class="project-btn danger">Stop</button>
+                <button onclick="resetRandomPathDemo()" class="project-btn ghost">Reset</button>
+              </div>
+              <div id="pyRandomPathStatus" class="project-output" style="margin-top: 0.8rem;">Ready to draw.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Randomized direction control (0, 90, 180, 270)</li>
+                <li>Boundary-based termination logic</li>
+                <li>Progressive line rendering</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Random</span>
+                <span class="tag">GUI</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      pyspiro: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Spirograph</h2>
+              <p class="project-subtitle">Rotating circle pattern generation.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <canvas id="pySpiroCanvas" width="420" height="420" class="project-canvas"></canvas>
+              <div class="project-actions" style="justify-content: center;">
+                <input id="pySpiroStep" type="number" min="2" max="36" value="10" class="project-input" style="max-width: 140px;" />
+                <button onclick="drawSpirographDemo()" class="project-btn primary">Draw</button>
+                <button onclick="clearSpirographDemo()" class="project-btn ghost">Clear</button>
+              </div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Angular transforms and circular geometry</li>
+                <li>Repeated arc rendering</li>
+                <li>Palette randomization</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">GUI</span>
+                <span class="tag">Generative</span>
+              </div>
             </div>
           </div>
         </article>
@@ -3746,6 +4140,370 @@
         };
 
         window.startPyGuessGame();
+      },
+      pycoffee: () => {
+        const scope = modalInner;
+        const menu = {
+          espresso: { cost: 1.5, ingredients: { water: 50, coffee: 18 } },
+          latte: { cost: 2.5, ingredients: { water: 200, milk: 150, coffee: 24 } },
+          cappuccino: { cost: 3.0, ingredients: { water: 250, milk: 100, coffee: 24 } }
+        };
+
+        const state = {
+          resources: { water: 300, milk: 200, coffee: 100 },
+          profit: 0,
+          credit: 0
+        };
+
+        const reportEl = () => scope.querySelector('#pyCoffeeReport');
+        const resultEl = () => scope.querySelector('#pyCoffeeResult');
+
+        const renderReport = () => {
+          const el = reportEl();
+          if (!el) return;
+          el.textContent = [
+            `Water: ${state.resources.water}ml`,
+            `Milk: ${state.resources.milk}ml`,
+            `Coffee: ${state.resources.coffee}g`,
+            `Money: $${state.profit.toFixed(2)}`,
+            `Credit: $${state.credit.toFixed(2)}`
+          ].join('\n');
+        };
+
+        const setMessage = (message) => {
+          const el = resultEl();
+          if (el) el.textContent = message;
+        };
+
+        const getCoinCount = (id) => Math.max(0, Number(scope.querySelector(id)?.value || 0));
+
+        window.insertCoffeeCoins = function() {
+          const quarters = getCoinCount('#pyCoffeeQuarters') * 0.25;
+          const dimes = getCoinCount('#pyCoffeeDimes') * 0.10;
+          const nickels = getCoinCount('#pyCoffeeNickels') * 0.05;
+          const pennies = getCoinCount('#pyCoffeePennies') * 0.01;
+          const inserted = quarters + dimes + nickels + pennies;
+          state.credit = Number((state.credit + inserted).toFixed(2));
+          ['#pyCoffeeQuarters', '#pyCoffeeDimes', '#pyCoffeeNickels', '#pyCoffeePennies'].forEach(id => {
+            const input = scope.querySelector(id);
+            if (input) input.value = '0';
+          });
+          setMessage(`Added $${inserted.toFixed(2)}. Credit is now $${state.credit.toFixed(2)}.`);
+          renderReport();
+        };
+
+        window.brewCoffeeDrink = function() {
+          const drinkKey = scope.querySelector('#pyCoffeeDrink')?.value || 'espresso';
+          const drink = menu[drinkKey];
+          if (!drink) return;
+
+          const missing = Object.keys(drink.ingredients).find(key => drink.ingredients[key] > state.resources[key]);
+          if (missing) {
+            setMessage(`Sorry, not enough ${missing}.`);
+            return;
+          }
+
+          if (state.credit < drink.cost) {
+            setMessage(`Need $${drink.cost.toFixed(2)}. Current credit: $${state.credit.toFixed(2)}.`);
+            return;
+          }
+
+          Object.keys(drink.ingredients).forEach(key => {
+            state.resources[key] -= drink.ingredients[key];
+          });
+          state.profit = Number((state.profit + drink.cost).toFixed(2));
+          const change = Number((state.credit - drink.cost).toFixed(2));
+          state.credit = 0;
+          setMessage(`Here is your ${drinkKey}. ${change > 0 ? `Change: $${change.toFixed(2)}.` : ''} Enjoy!`);
+          renderReport();
+        };
+
+        window.refillCoffeeMachine = function() {
+          state.resources = { water: 300, milk: 200, coffee: 100 };
+          state.credit = 0;
+          setMessage('Machine refilled to default resources. Credit reset.');
+          renderReport();
+        };
+
+        renderReport();
+      },
+      pyquiz: () => {
+        const scope = modalInner;
+        const questions = [
+          { text: 'A slug\'s blood is green.', answer: true },
+          { text: 'The Python keyword for defining a function is "func".', answer: false },
+          { text: 'The capital of South Africa is only one city.', answer: false },
+          { text: 'An object in OOP can contain both data and behavior.', answer: true },
+          { text: 'The Earth is flat.', answer: false }
+        ];
+
+        const state = {
+          index: 0,
+          score: 0,
+          started: false
+        };
+
+        const questionEl = () => scope.querySelector('#pyQuizQuestion');
+        const resultEl = () => scope.querySelector('#pyQuizResult');
+        const progressEl = () => scope.querySelector('#pyQuizProgress');
+        const scoreEl = () => scope.querySelector('#pyQuizScore');
+
+        const renderMeta = () => {
+          if (progressEl()) progressEl().textContent = `Question: ${Math.min(state.index + 1, questions.length)}/${questions.length}`;
+          if (scoreEl()) scoreEl().textContent = `Score: ${state.score}`;
+        };
+
+        const renderQuestion = () => {
+          const current = questions[state.index];
+          if (!current) {
+            if (questionEl()) questionEl().textContent = 'Quiz complete.';
+            if (resultEl()) resultEl().textContent = `Final score: ${state.score}/${questions.length}.`;
+            return;
+          }
+          if (questionEl()) questionEl().textContent = current.text;
+          if (resultEl()) resultEl().textContent = 'Choose True or False.';
+          renderMeta();
+        };
+
+        window.startPyQuiz = function() {
+          state.index = 0;
+          state.score = 0;
+          state.started = true;
+          renderQuestion();
+        };
+
+        window.answerPyQuiz = function(answer) {
+          if (!state.started) {
+            if (resultEl()) resultEl().textContent = 'Start the quiz first.';
+            return;
+          }
+          const current = questions[state.index];
+          if (!current) return;
+          if (Boolean(answer) === current.answer) {
+            state.score += 1;
+            if (resultEl()) resultEl().textContent = 'Correct.';
+          } else {
+            if (resultEl()) resultEl().textContent = 'Incorrect.';
+          }
+          state.index += 1;
+          renderMeta();
+          setTimeout(() => {
+            renderQuestion();
+          }, 260);
+        };
+
+        renderMeta();
+      },
+      pyhirst: () => {
+        const scope = modalInner;
+        const palette = ['#1b5e9a', '#2ca3d7', '#f4c542', '#d94f4f', '#2f2f2f', '#7abf7a', '#f29e4c', '#b8bec9', '#f7f3e8'];
+
+        const draw = () => {
+          const canvas = scope.querySelector('#pyHirstCanvas');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          const size = canvas.width;
+          ctx.clearRect(0, 0, size, size);
+          ctx.fillStyle = '#f8f8f8';
+          ctx.fillRect(0, 0, size, size);
+
+          const center = size / 2;
+          const maxRadius = (size / 2) - 12;
+          const spacing = 18;
+          const dotRadius = 5;
+
+          for (let y = 16; y <= size - 16; y += spacing) {
+            for (let x = 16; x <= size - 16; x += spacing) {
+              const dx = x - center;
+              const dy = y - center;
+              if ((dx * dx) + (dy * dy) > maxRadius * maxRadius) continue;
+              ctx.beginPath();
+              ctx.fillStyle = palette[Math.floor(Math.random() * palette.length)];
+              ctx.arc(x, y, dotRadius, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        };
+
+        window.generateHirstPainting = function() {
+          draw();
+        };
+
+        window.clearHirstPainting = function() {
+          const canvas = scope.querySelector('#pyHirstCanvas');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        draw();
+      },
+      pyshapes: () => {
+        const scope = modalInner;
+        const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#6366f1', '#ec4899', '#8b5cf6'];
+
+        const clear = () => {
+          const canvas = scope.querySelector('#pyShapesCanvas');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        };
+
+        const drawPolygon = (ctx, sides, radius, cx, cy) => {
+          ctx.beginPath();
+          for (let i = 0; i <= sides; i += 1) {
+            const angle = ((Math.PI * 2) / sides) * i - (Math.PI / 2);
+            const x = cx + radius * Math.cos(angle);
+            const y = cy + radius * Math.sin(angle);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        };
+
+        window.drawPyShapes = function() {
+          const canvas = scope.querySelector('#pyShapesCanvas');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          clear();
+          ctx.lineWidth = 2.2;
+          const cx = canvas.width / 2;
+          const cy = canvas.height / 2;
+          for (let sides = 3; sides <= 10; sides += 1) {
+            ctx.strokeStyle = colors[(sides - 3) % colors.length];
+            drawPolygon(ctx, sides, 36 + (sides * 14), cx, cy);
+          }
+        };
+
+        window.clearPyShapes = function() {
+          clear();
+        };
+
+        clear();
+        window.drawPyShapes();
+      },
+      pyrandompath: () => {
+        const scope = modalInner;
+        const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#06b6d4', '#ec4899', '#111827'];
+        const directions = [0, 90, 180, 270];
+        const state = {
+          x: 210,
+          y: 210,
+          heading: 0,
+          timer: null,
+          running: false
+        };
+
+        const canvas = scope.querySelector('#pyRandomPathCanvas');
+        const ctx = canvas?.getContext('2d');
+        const statusEl = () => scope.querySelector('#pyRandomPathStatus');
+
+        const resetCanvas = () => {
+          if (!canvas || !ctx) return;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.lineWidth = 8;
+          ctx.lineCap = 'round';
+          state.x = canvas.width / 2;
+          state.y = canvas.height / 2;
+        };
+
+        const step = () => {
+          if (!canvas || !ctx) return;
+          const heading = directions[Math.floor(Math.random() * directions.length)];
+          const radians = (heading * Math.PI) / 180;
+          const distance = 20;
+          const nextX = state.x + Math.cos(radians) * distance;
+          const nextY = state.y + Math.sin(radians) * distance;
+          ctx.strokeStyle = colors[Math.floor(Math.random() * colors.length)];
+          ctx.beginPath();
+          ctx.moveTo(state.x, state.y);
+          ctx.lineTo(nextX, nextY);
+          ctx.stroke();
+          state.x = nextX;
+          state.y = nextY;
+          const inBounds = state.x > 10 && state.x < canvas.width - 10 && state.y > 10 && state.y < canvas.height - 10;
+          if (!inBounds) {
+            window.stopRandomPathDemo();
+            if (statusEl()) statusEl().textContent = 'Path reached the boundary and stopped.';
+          }
+        };
+
+        window.startRandomPathDemo = function() {
+          if (state.running) return;
+          state.timer = window.setInterval(step, 80);
+          state.running = true;
+          if (statusEl()) statusEl().textContent = 'Drawing random path...';
+        };
+
+        window.stopRandomPathDemo = function() {
+          if (state.timer) {
+            clearInterval(state.timer);
+            state.timer = null;
+          }
+          state.running = false;
+          if (statusEl()) statusEl().textContent = 'Stopped.';
+        };
+
+        window.resetRandomPathDemo = function() {
+          window.stopRandomPathDemo();
+          resetCanvas();
+          if (statusEl()) statusEl().textContent = 'Canvas reset. Ready to draw.';
+        };
+
+        resetCanvas();
+        return () => {
+          if (state.timer) clearInterval(state.timer);
+        };
+      },
+      pyspiro: () => {
+        const scope = modalInner;
+        const palette = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#06b6d4', '#3b82f6', '#8b5cf6', '#ec4899'];
+
+        const clear = () => {
+          const canvas = scope.querySelector('#pySpiroCanvas');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        };
+
+        window.drawSpirographDemo = function() {
+          const canvas = scope.querySelector('#pySpiroCanvas');
+          if (!canvas) return;
+          const stepInput = Number(scope.querySelector('#pySpiroStep')?.value || 10);
+          const stepDeg = Math.max(2, Math.min(36, stepInput));
+          const ctx = canvas.getContext('2d');
+          clear();
+          const centerX = canvas.width / 2;
+          const centerY = canvas.height / 2;
+          const radius = 88;
+          const centerOrbit = 88;
+          const rotations = Math.floor(360 / stepDeg);
+
+          for (let i = 0; i < rotations; i += 1) {
+            const angleDeg = i * stepDeg;
+            const angleRad = (angleDeg * Math.PI) / 180;
+            const circleCenterX = centerX + Math.cos(angleRad) * centerOrbit;
+            const circleCenterY = centerY + Math.sin(angleRad) * centerOrbit;
+
+            ctx.beginPath();
+            ctx.strokeStyle = palette[Math.floor(Math.random() * palette.length)];
+            ctx.lineWidth = 2;
+            ctx.arc(circleCenterX, circleCenterY, radius, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+        };
+
+        window.clearSpirographDemo = function() {
+          clear();
+        };
+
+        window.drawSpirographDemo();
       }
     };
 
@@ -3755,11 +4513,18 @@
         const projectId = btn.dataset.project;
         const content = projects[projectId];
         if (!content) return;
+        if (typeof activeProjectCleanup === 'function') {
+          activeProjectCleanup();
+          activeProjectCleanup = null;
+        }
         modalInner.innerHTML = content;
         modal.classList.add('show');
         modal.setAttribute('aria-hidden', 'false');
         const init = projectInits[projectId];
-        if (init) init();
+        if (init) {
+          const cleanup = init();
+          activeProjectCleanup = typeof cleanup === 'function' ? cleanup : null;
+        }
       });
     });
 
@@ -3777,6 +4542,10 @@
     });
 
     function closeModal() {
+      if (typeof activeProjectCleanup === 'function') {
+        activeProjectCleanup();
+        activeProjectCleanup = null;
+      }
       modal.classList.remove('show');
       modal.setAttribute('aria-hidden', 'true');
       modalInner.innerHTML = '';
