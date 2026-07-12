@@ -1872,6 +1872,38 @@
             <span class="tag">Generative</span>
           </div>
         </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Turtle Race</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyturtlerace">View</button>
+            </div>
+          </div>
+          <p>Simulated turtle race with player color bets and randomized movement.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Random</span>
+            <span class="tag">Game</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Etch-A-Sketch</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyetch">View</button>
+            </div>
+          </div>
+          <p>Drawing board inspired by classic movement WASD controls.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Keyboard</span>
+            <span class="tag">GUI</span>
+          </div>
+        </div>
       </div>
       <p class="project-note" style="text-align: center; margin-top: -0.5rem;">More projects to be added.</p>
     </section>
@@ -3511,6 +3543,82 @@
             </div>
           </div>
         </article>
+      `,
+      pyturtlerace: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Turtle Race</h2>
+              <p class="project-subtitle">Turtle Color based race simulation with a player bet.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <canvas id="pyTurtleRaceCanvas" width="420" height="260" class="project-canvas"></canvas>
+              <div class="project-actions" style="justify-content: center; align-items: center;">
+                <select id="pyTurtleRaceBet" class="project-select" style="max-width: 170px;">
+                  <option value="red">Bet: red</option>
+                  <option value="orange">Bet: orange</option>
+                  <option value="yellow">Bet: yellow</option>
+                  <option value="green">Bet: green</option>
+                  <option value="blue">Bet: blue</option>
+                  <option value="purple">Bet: purple</option>
+                </select>
+                <button onclick="startPyTurtleRace()" class="project-btn primary">Start Race</button>
+                <button onclick="resetPyTurtleRace()" class="project-btn ghost">Reset</button>
+              </div>
+              <div id="pyTurtleRaceResult" class="project-output" style="margin-top: 0.8rem;">Pick a color and start the race.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Randomized progression and loop updates</li>
+                <li>Color-based winner detection</li>
+                <li>Input-driven game outcome messaging</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Random</span>
+                <span class="tag">Game</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      pyetch: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Etch-A-Sketch</h2>
+              <p class="project-subtitle">drawing board using WASD Keyboard inputs for movement.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <canvas id="pyEtchCanvas" width="420" height="300" class="project-canvas" style="background: #000000;"></canvas>
+              <div class="project-actions" style="justify-content: center;">
+                <button onclick="resetPyEtch()" class="project-btn ghost">Reset Position</button>
+                <button onclick="clearPyEtch()" class="project-btn danger">Clear</button>
+              </div>
+              <div id="pyEtchStatus" class="project-output" style="margin-top: 0.8rem;">Use W/S to move and A/D to rotate. Press C to clear.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Keyboard event handling and direction control</li>
+                <li>Canvas line drawing with heading transforms</li>
+                <li>State reset and clear behavior</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Keyboard</span>
+                <span class="tag">GUI</span>
+              </div>
+            </div>
+          </div>
+        </article>
       `
     };
 
@@ -4504,6 +4612,223 @@
         };
 
         window.drawSpirographDemo();
+      },
+      pyturtlerace: () => {
+        const scope = modalInner;
+        const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+        const lanes = [36, 72, 108, 144, 180, 216];
+        const finishX = 380;
+        const state = {
+          racers: [],
+          timer: null,
+          running: false
+        };
+
+        const resultEl = () => scope.querySelector('#pyTurtleRaceResult');
+
+        const drawTrack = () => {
+          const canvas = scope.querySelector('#pyTurtleRaceCanvas');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#f8fafc';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.strokeStyle = '#cbd5e1';
+          ctx.lineWidth = 1;
+
+          lanes.forEach((y) => {
+            ctx.beginPath();
+            ctx.moveTo(20, y + 12);
+            ctx.lineTo(finishX, y + 12);
+            ctx.stroke();
+          });
+
+          ctx.strokeStyle = '#334155';
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(finishX, 18);
+          ctx.lineTo(finishX, 242);
+          ctx.stroke();
+        };
+
+        const drawTurtle = (ctx, x, y, color) => {
+          ctx.save();
+          ctx.translate(x, y);
+
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, 11, 8, 0, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#065f46';
+          ctx.beginPath();
+          ctx.arc(9, 0, 3, 0, Math.PI * 2);
+          ctx.fill();
+
+          const feet = [[-7, -6], [-7, 6], [3, -6], [3, 6]];
+          feet.forEach(([fx, fy]) => {
+            ctx.beginPath();
+            ctx.arc(fx, fy, 2.2, 0, Math.PI * 2);
+            ctx.fill();
+          });
+
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.28)';
+          ctx.beginPath();
+          ctx.ellipse(-3, -2, 4, 2.5, -0.35, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.restore();
+        };
+
+        const renderRacers = () => {
+          const canvas = scope.querySelector('#pyTurtleRaceCanvas');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          drawTrack();
+
+          state.racers.forEach((racer) => {
+            drawTurtle(ctx, racer.x, racer.y, racer.color);
+          });
+        };
+
+        window.resetPyTurtleRace = function() {
+          if (state.timer) {
+            clearInterval(state.timer);
+            state.timer = null;
+          }
+          state.running = false;
+          state.racers = colors.map((color, index) => ({ color, x: 32, y: lanes[index] }));
+          renderRacers();
+          if (resultEl()) resultEl().textContent = 'Pick a color and start the race.';
+        };
+
+        window.startPyTurtleRace = function() {
+          if (state.running) return;
+          state.running = true;
+          const bet = (scope.querySelector('#pyTurtleRaceBet')?.value || '').toLowerCase();
+          if (resultEl()) resultEl().textContent = 'Race in progress...';
+
+          state.timer = setInterval(() => {
+            let winner = null;
+            state.racers.forEach((racer) => {
+              racer.x += Math.floor(Math.random() * 10) + 1;
+              if (!winner && racer.x >= finishX - 10) {
+                winner = racer.color;
+              }
+            });
+            renderRacers();
+
+            if (winner) {
+              clearInterval(state.timer);
+              state.timer = null;
+              state.running = false;
+              if (resultEl()) {
+                resultEl().textContent = winner === bet
+                  ? `You won. The ${winner} turtle is the winner.`
+                  : `You lost. The ${winner} turtle won the race.`;
+              }
+            }
+          }, 180);
+        };
+
+        window.resetPyTurtleRace();
+        return () => {
+          if (state.timer) clearInterval(state.timer);
+        };
+      },
+      pyetch: () => {
+        const scope = modalInner;
+        const state = {
+          x: 210,
+          y: 150,
+          heading: 0,
+          step: 10
+        };
+
+        const statusEl = () => scope.querySelector('#pyEtchStatus');
+
+        const getCtx = () => {
+          const canvas = scope.querySelector('#pyEtchCanvas');
+          if (!canvas) return null;
+          return canvas.getContext('2d');
+        };
+
+        const drawCursor = () => {
+          const ctx = getCtx();
+          const canvas = scope.querySelector('#pyEtchCanvas');
+          if (!ctx || !canvas) return;
+          const tipX = state.x + Math.cos((state.heading * Math.PI) / 180) * 8;
+          const tipY = state.y + Math.sin((state.heading * Math.PI) / 180) * 8;
+
+          ctx.save();
+          ctx.strokeStyle = '#f8fafc';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(state.x, state.y);
+          ctx.lineTo(tipX, tipY);
+          ctx.stroke();
+          ctx.restore();
+        };
+
+        const move = (distance) => {
+          const ctx = getCtx();
+          const canvas = scope.querySelector('#pyEtchCanvas');
+          if (!ctx || !canvas) return;
+          const angle = (state.heading * Math.PI) / 180;
+          const nextX = Math.max(2, Math.min(canvas.width - 2, state.x + Math.cos(angle) * distance));
+          const nextY = Math.max(2, Math.min(canvas.height - 2, state.y + Math.sin(angle) * distance));
+
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(state.x, state.y);
+          ctx.lineTo(nextX, nextY);
+          ctx.stroke();
+
+          state.x = nextX;
+          state.y = nextY;
+          drawCursor();
+        };
+
+        window.resetPyEtch = function() {
+          state.x = 210;
+          state.y = 150;
+          state.heading = 0;
+          if (statusEl()) statusEl().textContent = 'Reset. Use W/S to move and A/D to rotate.';
+          drawCursor();
+        };
+
+        window.clearPyEtch = function() {
+          const ctx = getCtx();
+          const canvas = scope.querySelector('#pyEtchCanvas');
+          if (!ctx || !canvas) return;
+          ctx.fillStyle = '#000000';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          window.resetPyEtch();
+          if (statusEl()) statusEl().textContent = 'Canvas cleared. Use W/S to move and A/D to rotate. Press C to clear.';
+        };
+
+        const keyHandler = (event) => {
+          const key = event.key.toLowerCase();
+          if (!['w', 'a', 's', 'd', 'c'].includes(key)) return;
+          event.preventDefault();
+
+          if (key === 'w') move(state.step);
+          if (key === 's') move(-state.step);
+          if (key === 'a') state.heading -= 15;
+          if (key === 'd') state.heading += 15;
+          if (key === 'c') window.clearPyEtch();
+
+          if (statusEl() && key !== 'c') {
+            statusEl().textContent = `Heading ${Math.round(state.heading)} deg. Position (${Math.round(state.x)}, ${Math.round(state.y)}).`;
+          }
+        };
+
+        window.addEventListener('keydown', keyHandler);
+        window.clearPyEtch();
+        return () => {
+          window.removeEventListener('keydown', keyHandler);
+        };
       }
     };
 
