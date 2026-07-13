@@ -1904,6 +1904,22 @@
             <span class="tag">GUI</span>
           </div>
         </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Snake Game</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pysnake">View</button>
+            </div>
+          </div>
+          <p>Canvas snake game with start prompt, food growth, and boundary-based game over.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Game</span>
+            <span class="tag">GUI</span>
+          </div>
+        </div>
       </div>
       <p class="project-note" style="text-align: center; margin-top: -0.5rem;">More projects to be added.</p>
     </section>
@@ -3621,6 +3637,41 @@
             </div>
           </div>
         </article>
+      `,
+      pysnake: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Snake Game</h2>
+              <p class="project-subtitle">Keyboard-driven arcade game with a start gate, food growth, and boundary loss conditions.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <canvas id="pySnakeCanvas" width="420" height="420" class="project-canvas" style="background: #020617;"></canvas>
+              <div class="project-actions" style="justify-content: center; align-items: center;">
+                <button onclick="startPySnakeGame()" class="project-btn primary">Start / Restart</button>
+                <button onclick="pausePySnakeGame()" class="project-btn ghost">Pause</button>
+              </div>
+              <div id="pySnakeScore" class="project-output" style="margin-top: 0.8rem;">Score: 0 | Length: 4</div>
+              <div id="pySnakeStatus" class="project-output" style="margin-top: 0.6rem;">Press Space or Start to begin. Use W/A/S/D or arrow keys to steer.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Real-time keyboard input and direction locking</li>
+                <li>Segment-follow movement and growth</li>
+                <li>Boundary collision and win-state handling</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Game</span>
+                <span class="tag">Keyboard</span>
+              </div>
+            </div>
+          </div>
+        </article>
       `
     };
 
@@ -4841,6 +4892,244 @@
         window.addEventListener('keydown', keyHandler);
         window.clearPyEtch();
         return () => {
+          window.removeEventListener('keydown', keyHandler);
+        };
+      },
+      pysnake: () => {
+        const scope = modalInner;
+        const gridSize = 20;
+        const cellsPerSide = 21;
+        const initialSnake = () => ([
+          { x: 10, y: 10 },
+          { x: 9, y: 10 },
+          { x: 8, y: 10 },
+          { x: 7, y: 10 }
+        ]);
+
+        const state = {
+          snake: initialSnake(),
+          direction: 'right',
+          nextDirection: 'right',
+          food: { x: 4, y: 4 },
+          timer: null,
+          running: false,
+          started: false,
+          speed: 100,
+          score: 0
+        };
+
+        const canvasEl = () => scope.querySelector('#pySnakeCanvas');
+        const scoreEl = () => scope.querySelector('#pySnakeScore');
+        const statusEl = () => scope.querySelector('#pySnakeStatus');
+
+        const directionVectors = {
+          up: { x: 0, y: -1 },
+          down: { x: 0, y: 1 },
+          left: { x: -1, y: 0 },
+          right: { x: 1, y: 0 }
+        };
+
+        const opposites = {
+          up: 'down',
+          down: 'up',
+          left: 'right',
+          right: 'left'
+        };
+
+        const drawCell = (ctx, x, y, color, inset = 2) => {
+          ctx.fillStyle = color;
+          ctx.fillRect(
+            (x * gridSize) + inset,
+            (y * gridSize) + inset,
+            gridSize - (inset * 2),
+            gridSize - (inset * 2)
+          );
+        };
+
+        const render = () => {
+          const canvas = canvasEl();
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#020617';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.strokeStyle = 'rgba(148, 163, 184, 0.15)';
+          ctx.lineWidth = 1;
+          for (let line = 0; line <= cellsPerSide; line += 1) {
+            const offset = line * gridSize;
+            ctx.beginPath();
+            ctx.moveTo(offset, 0);
+            ctx.lineTo(offset, canvas.height);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(0, offset);
+            ctx.lineTo(canvas.width, offset);
+            ctx.stroke();
+          }
+
+          drawCell(ctx, state.food.x, state.food.y, '#ef4444', 3);
+          state.snake.forEach((segment, index) => {
+            drawCell(ctx, segment.x, segment.y, index === 0 ? '#f8fafc' : '#94a3b8');
+          });
+        };
+
+        const updateMeta = (message) => {
+          if (scoreEl()) scoreEl().textContent = `Score: ${state.score} | Length: ${state.snake.length}`;
+          if (message && statusEl()) statusEl().textContent = message;
+        };
+
+        const stopTimer = () => {
+          if (state.timer) {
+            clearInterval(state.timer);
+            state.timer = null;
+          }
+        };
+
+        const placeFood = () => {
+          const occupied = new Set(state.snake.map((segment) => `${segment.x},${segment.y}`));
+          const available = [];
+
+          for (let y = 0; y < cellsPerSide; y += 1) {
+            for (let x = 0; x < cellsPerSide; x += 1) {
+              const key = `${x},${y}`;
+              if (!occupied.has(key)) available.push({ x, y });
+            }
+          }
+
+          if (!available.length) {
+            state.food = null;
+            return;
+          }
+
+          state.food = available[Math.floor(Math.random() * available.length)];
+        };
+
+        const resetState = () => {
+          stopTimer();
+          state.snake = initialSnake();
+          state.direction = 'right';
+          state.nextDirection = 'right';
+          state.running = false;
+          state.started = false;
+          state.score = 0;
+          placeFood();
+          render();
+          updateMeta('Press Space or Start to begin. Use W/A/S/D or arrow keys to steer.');
+        };
+
+        const finishGame = (message) => {
+          stopTimer();
+          state.running = false;
+          updateMeta(message);
+          render();
+        };
+
+        const tick = () => {
+          state.direction = state.nextDirection;
+          const vector = directionVectors[state.direction];
+          const nextHead = {
+            x: state.snake[0].x + vector.x,
+            y: state.snake[0].y + vector.y
+          };
+
+          if (
+            nextHead.x < 0 || nextHead.x >= cellsPerSide ||
+            nextHead.y < 0 || nextHead.y >= cellsPerSide
+          ) {
+            finishGame('Game over. The snake hit the boundary. Press Start to play again.');
+            return;
+          }
+
+          state.snake.unshift(nextHead);
+          const ateFood = state.food && nextHead.x === state.food.x && nextHead.y === state.food.y;
+
+          if (ateFood) {
+            state.score += 1;
+            if (state.snake.length >= cellsPerSide * cellsPerSide) {
+              finishGame('You win. The snake filled the board.');
+              return;
+            }
+            placeFood();
+            updateMeta('Food collected. Keep going.');
+          } else {
+            state.snake.pop();
+            updateMeta('Snake is moving. Stay inside the boundary.');
+          }
+
+          render();
+        };
+
+        const startLoop = () => {
+          stopTimer();
+          state.timer = setInterval(tick, state.speed);
+        };
+
+        const requestDirection = (next) => {
+          if (!state.started || !next || opposites[state.direction] === next) return;
+          state.nextDirection = next;
+        };
+
+        window.startPySnakeGame = function() {
+          resetState();
+          state.started = true;
+          state.running = true;
+          updateMeta('Game started. Eat the red food and avoid the boundary.');
+          render();
+          startLoop();
+        };
+
+        window.pausePySnakeGame = function() {
+          if (!state.started) {
+            updateMeta('Start the game first.');
+            return;
+          }
+
+          if (state.running) {
+            stopTimer();
+            state.running = false;
+            updateMeta('Paused. Press Space or Start to continue.');
+            return;
+          }
+
+          state.running = true;
+          updateMeta('Game resumed.');
+          startLoop();
+        };
+
+        const keyHandler = (event) => {
+          const key = event.key.toLowerCase();
+          const keyMap = {
+            w: 'up',
+            arrowup: 'up',
+            s: 'down',
+            arrowdown: 'down',
+            a: 'left',
+            arrowleft: 'left',
+            d: 'right',
+            arrowright: 'right'
+          };
+
+          if (key === ' ') {
+            event.preventDefault();
+            if (!state.started) {
+              window.startPySnakeGame();
+            } else {
+              window.pausePySnakeGame();
+            }
+            return;
+          }
+
+          const next = keyMap[key];
+          if (!next) return;
+          event.preventDefault();
+          requestDirection(next);
+        };
+
+        window.addEventListener('keydown', keyHandler);
+        resetState();
+        return () => {
+          stopTimer();
           window.removeEventListener('keydown', keyHandler);
         };
       }
