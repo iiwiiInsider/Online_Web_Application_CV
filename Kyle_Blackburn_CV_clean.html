@@ -3334,8 +3334,9 @@
           <div class="project-layout">
             <div class="project-panel">
               <h3>Live demo</h3>
-              <div id="pyCoffeeReport" class="project-output mono">Water: 300ml\nMilk: 200ml\nCoffee: 100g\nMoney: $0.00\nCredit: $0.00</div>
+              <div id="pyCoffeeReport" class="project-output mono">Water: 300ml\nMilk: 200ml\nCoffee: 100g\nFloat: $10.00\nMoney: $0.00\nCredit: $0.00</div>
               <div class="project-actions" style="margin-top: 0.8rem;">
+                <input id="pyCoffeeFloat" type="number" min="0" step="0.01" value="10" class="project-input" placeholder="Starting float" />
                 <select id="pyCoffeeDrink" class="project-select">
                   <option value="espresso">Espresso ($1.50)</option>
                   <option value="latte">Latte ($2.50)</option>
@@ -3347,6 +3348,7 @@
                 <input id="pyCoffeePennies" type="number" min="0" value="0" class="project-input" placeholder="Pennies" />
               </div>
               <div class="project-actions">
+                <button onclick="setCoffeeFloat()" class="project-btn ghost">Set float</button>
                 <button onclick="insertCoffeeCoins()" class="project-btn primary">Insert coins</button>
                 <button onclick="brewCoffeeDrink()" class="project-btn success">Buy drink</button>
                 <button onclick="refillCoffeeMachine()" class="project-btn ghost">Refill</button>
@@ -4259,6 +4261,7 @@
 
         const state = {
           resources: { water: 300, milk: 200, coffee: 100 },
+          float: 10,
           profit: 0,
           credit: 0
         };
@@ -4273,6 +4276,7 @@
             `Water: ${state.resources.water}ml`,
             `Milk: ${state.resources.milk}ml`,
             `Coffee: ${state.resources.coffee}g`,
+            `Float: $${state.float.toFixed(2)}`,
             `Money: $${state.profit.toFixed(2)}`,
             `Credit: $${state.credit.toFixed(2)}`
           ].join('\n');
@@ -4284,6 +4288,15 @@
         };
 
         const getCoinCount = (id) => Math.max(0, Number(scope.querySelector(id)?.value || 0));
+
+        window.setCoffeeFloat = function() {
+          const input = scope.querySelector('#pyCoffeeFloat');
+          const nextFloat = Math.max(0, Number(input?.value || 0));
+          state.float = Number(nextFloat.toFixed(2));
+          if (input) input.value = state.float.toFixed(2);
+          setMessage(`Machine float set to $${state.float.toFixed(2)}.`);
+          renderReport();
+        };
 
         window.insertCoffeeCoins = function() {
           const quarters = getCoinCount('#pyCoffeeQuarters') * 0.25;
@@ -4321,6 +4334,7 @@
           });
           state.profit = Number((state.profit + drink.cost).toFixed(2));
           const change = Number((state.credit - drink.cost).toFixed(2));
+          state.float = Number((state.float + drink.cost).toFixed(2));
           state.credit = 0;
           setMessage(`Here is your ${drinkKey}. ${change > 0 ? `Change: $${change.toFixed(2)}.` : ''} Enjoy!`);
           renderReport();
@@ -4329,7 +4343,7 @@
         window.refillCoffeeMachine = function() {
           state.resources = { water: 300, milk: 200, coffee: 100 };
           state.credit = 0;
-          setMessage('Machine refilled to default resources. Credit reset.');
+          setMessage('Machine refilled to default resources. Credit reset; float retained.');
           renderReport();
         };
 
