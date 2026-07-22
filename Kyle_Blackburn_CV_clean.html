@@ -141,18 +141,15 @@
     }
 
     .hero {
-      background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
       padding: 4rem 2rem;
       border-bottom: 1px solid var(--border);
     }
 
     .hero-content {
-      max-width: 1100px;
-      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 3rem;
+      gap: 2rem;
       flex-wrap: wrap;
     }
 
@@ -160,15 +157,12 @@
       width: 220px;
       height: 220px;
       border-radius: 16px;
-      background: #0b1220;
-      border: 1px solid var(--border);
       box-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
+      overflow: hidden;
+      flex: 0 0 auto;
     }
 
     .hero-image img {
@@ -187,6 +181,22 @@
       color: #ffffff;
       margin-bottom: 0.5rem;
       text-align: center;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 760px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
     }
 
     .hero-links {
@@ -1291,7 +1301,7 @@
     <section id="summary" class="section active">
       <div class="section-header"><h2>Professional Summary</h2></div>
       <p>
-        Analytical and technology-driven PropTech professional with 4 years of exposure across real estate, digital platforms, retail technology, and financial market analysis. PPRA and SSETA certified, with formal training in property practice, full-stack web development, UX/UI design, and secure application thinking. Demonstrates strong capabilities in market analysis, business communication, technology integration, and modern property environments. Known for being structured and organised, practical, consistent, and highly detail-oriented, with a focus on improving operational efficiency and digital innovation in the property sector.
+        Analytical and technology-driven PropTech professional with 4 years of exposure across real estate, digital platforms, retail technology, and financial market analysis. PPRA and SSETA certified with formal training in property practice, full-stack web development, UX/UI design, Cybersecurity, Java Development, Autodesk AutoCAD and secure application thinking. Demonstrates strong capabilities in market analysis, business communication, technology integration and knowledge in modern property environments. Known for structured & organised, practical, consistent, and highly detail-oriented, with a focus on improving operational efficiency and digital innovation in the property and technology sector.
       </p>
       <div class="section-header"><h2>Previous Work Experience</h2></div>
       <div class="company-logos">
@@ -1451,6 +1461,17 @@
             <span class="status-badge complete">Complete</span>
           </div>
         </div>
+
+        <div class="qualification-item" data-pdf="Autodesk AutoCAD Beginner To Advanced Certificate Of Completion.pdf">
+          <div>
+            <div class="qualification-title">Autodesk AutoCAD - Beginner to Advanced level (Udemy)</div>
+            <div class="qualification-meta">Instructor: Steve Clancy - Completed July 21, 2026 - 19 total hours</div>
+          </div>
+          <div class="qualification-right">
+            <button class="btn ghost small" type="button" data-qual-pdf="Autodesk AutoCAD Beginner To Advanced Certificate Of Completion.pdf">View PDF</button>
+            <span class="status-badge complete">Complete</span>
+          </div>
+        </div>
       </div>
 
       <div class="pdf-panel">
@@ -1469,6 +1490,7 @@
               <option value="Kyle-Blackburn-Certificate-Typing-Skills.pdf">Certificate – Typing Skills (www.typingtest.com)</option>
               <option value="Kyle-Blackburn-Certificate-AI-Pair-Programming-GitHub-Copilot.pdf">Certificate – AI Pair Programming (LinkedIn Learning)</option>
               <option value="Kyle-Blackburn-Certificate-PPRA-Professional-Practitioner-in-Real-Estate.pdf">Certificate – PPRA Professional Practitioner in Real Estate</option>
+              <option value="Autodesk AutoCAD Beginner To Advanced Certificate Of Completion.pdf">Certificate – Autodesk AutoCAD - Beginner to Advanced level (Udemy)</option>
             </select>
           </div>
 
@@ -1827,22 +1849,6 @@
 
         <div class="card project-card">
           <div class="card-header">
-            <strong>Shapes Inside Shapes</strong>
-            <div class="project-card-actions">
-              <span class="status-badge complete">Complete</span>
-              <button class="btn-arrow" data-project="pyshapes">View</button>
-            </div>
-          </div>
-          <p>Nested polygon drawing from triangle to decagon with color variation.</p>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Geometry</span>
-            <span class="tag">GUI</span>
-          </div>
-        </div>
-
-        <div class="card project-card">
-          <div class="card-header">
             <strong>Random Path</strong>
             <div class="project-card-actions">
               <span class="status-badge complete">Complete</span>
@@ -1920,6 +1926,102 @@
             <span class="tag">GUI</span>
           </div>
         </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Single Player Padel Game</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="padel2p">View</button>
+            </div>
+          </div>
+          <p>Competitive single-player court game with rally tracking and score updates.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Game Logic</span>
+            <span class="tag">Single Player</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Crossy Road Game</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="crossyroad">View</button>
+            </div>
+          </div>
+          <p>Arcade-style crossing game with lane dodging and increasing challenge.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Game</span>
+            <span class="tag">Movement</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>NATO Phonetic Translator</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="phonetic">View</button>
+            </div>
+          </div>
+          <p>Text-to-codeword translator for clear spelling and communication.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Dictionary</span>
+            <span class="tag">Translator</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Universal Unit Converter</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="unitconvert">View</button>
+            </div>
+          </div>
+          <p>General-purpose unit conversion tool covering common measurement types.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Math</span>
+            <span class="tag">Utilities</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Pomodoro Programme</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pomodoro">View</button>
+            </div>
+          </div>
+          <p>Focus-session timer built around work, break, and reset cycles.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Timer</span>
+            <span class="tag">Productivity</span>
+          </div>
+        </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>Password Manager</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="passwordmgr">View</button>
+            </div>
+          </div>
+          <p>Secure credential manager for storing and organizing login details.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Security</span>
+            <span class="tag">Data</span>
+          </div>
+        </div>
       </div>
       <p class="project-note" style="text-align: center; margin-top: -0.5rem;">More projects to be added.</p>
     </section>
@@ -1963,6 +2065,7 @@
         <a class="btn ghost" href="Kyle-Blackburn-Certificate-UI-UX-Design.pdf" download>Download UI and UX Designer Certificate (Udemy)</a>
         <a class="btn ghost" href="Kyle-Blackburn-Certificate-Typing-Skills.pdf" download>Download Typing Skills Certificate (www.typingtest.com)</a>
         <a class="btn ghost" href="Kyle-Blackburn-Certificate-AI-Pair-Programming-GitHub-Copilot.pdf" download>Download AI Pair Programming Certificate</a>
+        <a class="btn ghost" href="Autodesk AutoCAD Beginner To Advanced Certificate Of Completion.pdf" download>Download Autodesk AutoCAD Certificate (Udemy)</a>
       </div>
     </section>
 
@@ -2966,6 +3069,231 @@
           </div>
         </article>
       `,
+      padel2p: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>1-Player Padel Game</h2>
+              <p class="project-subtitle">A single-player paddle game with an auto-moving opponent and ball rally loop.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <canvas id="padelCanvas" width="420" height="300" class="project-canvas" style="background: #020617;"></canvas>
+              <div class="project-actions" style="justify-content: center; flex-wrap: wrap;">
+                <button onclick="padelMovePaddle('left', -24)" class="project-btn primary">Move Up</button>
+                <button onclick="padelMovePaddle('left', 24)" class="project-btn primary">Move Down</button>
+                <button onclick="padelStartGame()" class="project-btn ghost">Start</button>
+                <button onclick="padelResetGame()" class="project-btn ghost">Reset</button>
+              </div>
+              <div id="padelScoreBoard" class="project-output mono" style="font-size: 1.2rem; margin-top: 0.8rem;">You 0 - 0 CPU</div>
+              <div id="padelStatus" class="project-output" style="margin-top: 0.4rem;">Press Start to begin.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Player paddle control</li>
+                <li>Auto-moving opponent logic</li>
+                <li>Ball physics and collision response</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Game Logic</span>
+                <span class="tag">Single Player</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      crossyroad: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Crossy Road Game</h2>
+              <p class="project-subtitle">Cross the road while moving traffic streams push across the lanes.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <canvas id="crossyRoadCanvas" width="420" height="300" class="project-canvas" style="background: #020617;"></canvas>
+              <div class="project-actions" style="justify-content: center; flex-wrap: wrap;">
+                <button onclick="crossyMove(0, -1)" class="project-btn primary">Up</button>
+                <button onclick="crossyMove(-1, 0)" class="project-btn primary">Left</button>
+                <button onclick="crossyMove(1, 0)" class="project-btn primary">Right</button>
+                <button onclick="crossyMove(0, 1)" class="project-btn primary">Down</button>
+                <button onclick="resetCrossyRoadGame()" class="project-btn ghost">Reset</button>
+              </div>
+              <div id="crossyRoadStatus" class="project-output" style="margin-top: 0.8rem;">Cross the road without hitting traffic.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Grid-based movement</li>
+                <li>Collision detection</li>
+                <li>Difficulty scaling</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Game</span>
+                <span class="tag">Movement</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      phonetic: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>NATO Phonetic Translator</h2>
+              <p class="project-subtitle">Translate letters into NATO code words for clearer communication.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <textarea id="phoneticInput" class="project-input" rows="4" placeholder="Type text here">kyle</textarea>
+              <div class="project-actions" style="margin-top: 0.8rem;">
+                <button onclick="translatePhonetic()" class="project-btn primary">Translate</button>
+                <button onclick="clearPhoneticTranslator()" class="project-btn ghost">Clear</button>
+              </div>
+              <pre id="phoneticOutput" class="project-output mono" style="margin-top: 0.8rem; min-height: 120px; white-space: pre-wrap;">Kilo Yankee Lima Echo</pre>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Dictionary mapping</li>
+                <li>Character iteration</li>
+                <li>Input normalization</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Dictionary</span>
+                <span class="tag">Translator</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      unitconvert: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Universal Unit Converter</h2>
+              <p class="project-subtitle">Convert length, mass, and temperature values with one tool.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <div class="project-actions" style="margin-bottom: 0.8rem; flex-wrap: wrap;">
+                <select id="unitCategory" class="project-select" onchange="renderUnitOptions()">
+                  <option value="length">Length</option>
+                  <option value="mass">Mass</option>
+                  <option value="temperature">Temperature</option>
+                </select>
+                <select id="unitFrom" class="project-select"></select>
+                <select id="unitTo" class="project-select"></select>
+                <input id="unitValue" type="number" value="1" class="project-input" />
+                <button onclick="convertUnit()" class="project-btn primary">Convert</button>
+              </div>
+              <div id="unitResult" class="project-output mono">1 length unit = 1</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Math and formula handling</li>
+                <li>Menu or option-driven flow</li>
+                <li>Reusable conversion logic</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Math</span>
+                <span class="tag">Utilities</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      pomodoro: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Pomodoro Programme</h2>
+              <p class="project-subtitle">A focus timer that alternates between work blocks and short recovery breaks.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <div class="project-actions" style="justify-content: center; margin-bottom: 0.75rem; flex-wrap: wrap;">
+                <label class="project-note" style="display: block; width: 100%; text-align: center;">Work minutes</label>
+                <input id="pomodoroFocus" type="number" min="1" class="project-input" value="25" />
+                <label class="project-note" style="display: block; width: 100%; text-align: center; margin-top: 0.25rem;">Break minutes</label>
+                <input id="pomodoroBreak" type="number" min="1" class="project-input" value="5" />
+              </div>
+              <div id="pomodoroTimer" class="project-output mono" style="font-size: 2rem; margin-bottom: 0.4rem;">25:00</div>
+              <div id="pomodoroPhase" class="project-output" style="margin-bottom: 0.8rem;">Focus session</div>
+              <div class="project-actions" style="justify-content: center;">
+                <button onclick="startPomodoroTimer()" class="project-btn primary">Start</button>
+                <button onclick="pausePomodoroTimer()" class="project-btn ghost">Pause</button>
+                <button onclick="resetPomodoroTimer()" class="project-btn danger">Reset</button>
+              </div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Timer state management</li>
+                <li>Countdown logic</li>
+                <li>Reset and cycle handling</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Timer</span>
+                <span class="tag">Productivity</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      passwordmgr: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>Password Manager</h2>
+              <p class="project-subtitle">Store and manage login entries in a simple interactive list.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel">
+              <div class="project-actions" style="margin-bottom: 0.8rem; flex-wrap: wrap;">
+                <input id="pmSite" type="text" class="project-input" placeholder="Site or app" />
+                <input id="pmUser" type="text" class="project-input" placeholder="Username" />
+                <input id="pmPass" type="text" class="project-input" placeholder="Password" />
+                <button onclick="addPasswordEntry()" class="project-btn primary">Add entry</button>
+              </div>
+              <div id="pmStatus" class="project-output" style="margin-bottom: 0.8rem;">No entries saved yet.</div>
+              <div id="pmList" class="project-stack"></div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Dictionary and record management</li>
+                <li>Data persistence concepts</li>
+                <li>Security-minded program design</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Security</span>
+                <span class="tag">Data</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
       pyauction: `
         <article class="project-modal">
           <div class="project-header">
@@ -3398,29 +3726,26 @@
           </div>
           <div class="project-layout">
             <div class="project-panel">
-              <h3>Live demo</h3>
-              <div id="pyQuizQuestion" class="project-output" style="min-height: 82px;">Press Start Quiz to begin.</div>
-              <div id="pyQuizMeta" class="project-inline-stats">
-                <span id="pyQuizProgress">Question: 0/0</span>
-                <span id="pyQuizScore">Score: 0</span>
-              </div>
+              <div id="pyQuizQuestion" class="project-output" style="font-size: 1.15rem; margin-bottom: 0.8rem;">Press Start to begin the quiz.</div>
+              <div id="pyQuizResult" class="project-output" style="margin-bottom: 0.8rem;">Choose True or False.</div>
+              <div id="pyQuizProgress" class="project-output mono" style="margin-bottom: 0.4rem;">Question: 1/5</div>
+              <div id="pyQuizScore" class="project-output mono" style="margin-bottom: 0.8rem;">Score: 0</div>
               <div class="project-actions">
-                <button onclick="startPyQuiz()" class="project-btn primary">Start quiz</button>
-                <button onclick="answerPyQuiz(true)" class="project-btn success">True</button>
-                <button onclick="answerPyQuiz(false)" class="project-btn danger">False</button>
+                <button onclick="startPyQuiz()" class="project-btn ghost">Start</button>
+                <button onclick="answerPyQuiz(true)" class="project-btn primary">True</button>
+                <button onclick="answerPyQuiz(false)" class="project-btn primary">False</button>
               </div>
-              <div id="pyQuizResult" class="project-output" style="margin-top: 0.8rem;">Awaiting quiz start.</div>
             </div>
             <div class="project-panel">
               <h3>Skills demonstrated</h3>
               <ul class="project-list">
-                <li>Question model and quiz-brain flow</li>
-                <li>Score and progress tracking</li>
-                <li>Boolean answer validation</li>
+                <li>Question-and-answer flow</li>
+                <li>Score tracking</li>
+                <li>Delayed progression and state updates</li>
               </ul>
               <div class="tags">
                 <span class="tag">Python</span>
-                <span class="tag">OOP</span>
+                <span class="tag">GUI</span>
                 <span class="tag">Logic</span>
               </div>
             </div>
@@ -3431,7 +3756,7 @@
         <article class="project-modal">
           <div class="project-header">
             <div>
-              <h2>Hirst Painting Generator</h2>
+              <h2>Hirst Painting</h2>
               <p class="project-subtitle">A dot painting inspired by Hirst.</p>
             </div>
             <span class="status-badge complete">Complete</span>
@@ -3455,39 +3780,6 @@
                 <span class="tag">Python</span>
                 <span class="tag">GUI</span>
                 <span class="tag">Art</span>
-              </div>
-            </div>
-          </div>
-        </article>
-      `,
-      pyshapes: `
-        <article class="project-modal">
-          <div class="project-header">
-            <div>
-              <h2>Shapes Inside Shapes</h2>
-              <p class="project-subtitle">Polygon progression from triangle to decagon from a single center point.</p>
-            </div>
-            <span class="status-badge complete">Complete</span>
-          </div>
-          <div class="project-layout">
-            <div class="project-panel center">
-              <canvas id="pyShapesCanvas" width="420" height="420" class="project-canvas"></canvas>
-              <div class="project-actions" style="justify-content: center;">
-                <button onclick="drawPyShapes()" class="project-btn primary">Draw shapes</button>
-                <button onclick="clearPyShapes()" class="project-btn ghost">Clear</button>
-              </div>
-            </div>
-            <div class="project-panel">
-              <h3>Skills demonstrated</h3>
-              <ul class="project-list">
-                <li>Regular polygon geometry</li>
-                <li>Iterative drawing by side count</li>
-                <li>Color sequencing</li>
-              </ul>
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">Geometry</span>
-                <span class="tag">GUI</span>
               </div>
             </div>
           </div>
@@ -3941,6 +4233,494 @@
           if (input) input.value = String(lastResult);
         };
         window.runPyCalc();
+      },
+      padel2p: () => {
+        const scope = modalInner;
+        const canvas = scope.querySelector('#padelCanvas');
+        const scoreBoard = scope.querySelector('#padelScoreBoard');
+        const status = scope.querySelector('#padelStatus');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const state = {
+          paddles: { left: 118, right: 118 },
+          ball: { x: canvas.width / 2, y: canvas.height / 2, vx: 0, vy: 0 },
+          scores: { left: 0, right: 0 },
+          running: false,
+          timer: null
+        };
+
+        const paddleWidth = 10;
+        const paddleHeight = 56;
+        const ballRadius = 7;
+
+        const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+        const updateScore = (message) => {
+          if (scoreBoard) scoreBoard.textContent = `You ${state.scores.left} - ${state.scores.right} CPU`;
+          if (status) status.textContent = message || 'Press Start to begin.';
+        };
+
+        const draw = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#020617';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.strokeStyle = 'rgba(148, 163, 184, 0.3)';
+          ctx.setLineDash([10, 10]);
+          ctx.beginPath();
+          ctx.moveTo(canvas.width / 2, 0);
+          ctx.lineTo(canvas.width / 2, canvas.height);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          ctx.fillStyle = '#f8fafc';
+          ctx.fillRect(16, state.paddles.left, paddleWidth, paddleHeight);
+          ctx.fillRect(canvas.width - 26, state.paddles.right, paddleWidth, paddleHeight);
+
+          ctx.fillStyle = '#f59e0b';
+          ctx.beginPath();
+          ctx.arc(state.ball.x, state.ball.y, ballRadius, 0, Math.PI * 2);
+          ctx.fill();
+        };
+
+        const resetBall = (direction = 1) => {
+          state.ball.x = canvas.width / 2;
+          state.ball.y = canvas.height / 2;
+          state.ball.vx = 4.2 * direction;
+          state.ball.vy = Math.random() > 0.5 ? 2.4 : -2.4;
+          updateScore('Rally in play.');
+        };
+
+        const serve = () => {
+          state.scores.left = 0;
+          state.scores.right = 0;
+          state.paddles.left = 118;
+          state.paddles.right = 118;
+          state.running = false;
+          resetBall(Math.random() > 0.5 ? 1 : -1);
+          draw();
+        };
+
+        const bouncePaddle = (side) => {
+          const offset = side === 'left' ? (state.ball.y - state.paddles.left - paddleHeight / 2) : (state.ball.y - state.paddles.right - paddleHeight / 2);
+          const maxOffset = paddleHeight / 2;
+          const angle = clamp(offset / maxOffset, -1, 1);
+          state.ball.vy = angle * 4.5;
+          state.ball.vx *= -1.05;
+        };
+
+        const tick = () => {
+          if (!state.running) return;
+          const paddleCenter = state.paddles.right + paddleHeight / 2;
+          const target = state.ball.y - paddleHeight / 2;
+          state.paddles.right = clamp(state.paddles.right + Math.sign(target - state.paddles.right) * 2.8, 0, canvas.height - paddleHeight);
+          state.ball.x += state.ball.vx;
+          state.ball.y += state.ball.vy;
+
+          if (state.ball.y <= ballRadius || state.ball.y >= canvas.height - ballRadius) {
+            state.ball.vy *= -1;
+          }
+
+          const leftPaddleX = 16 + paddleWidth;
+          const rightPaddleX = canvas.width - 26 - paddleWidth;
+
+          if (state.ball.vx < 0 && state.ball.x - ballRadius <= leftPaddleX + 2) {
+            if (state.ball.y >= state.paddles.left && state.ball.y <= state.paddles.left + paddleHeight) {
+              state.ball.x = leftPaddleX + ballRadius + 2;
+              bouncePaddle('left');
+              updateScore('You return the ball.');
+            } else if (state.ball.x < 0) {
+              state.scores.right += 1;
+              if (state.scores.right >= 7) {
+                state.running = false;
+                updateScore('CPU wins. Press Start to play again.');
+                resetBall(1);
+                draw();
+                return;
+              }
+              resetBall(1);
+            }
+          }
+
+          if (state.ball.vx > 0 && state.ball.x + ballRadius >= rightPaddleX - 2) {
+            if (state.ball.y >= state.paddles.right && state.ball.y <= state.paddles.right + paddleHeight) {
+              state.ball.x = rightPaddleX - ballRadius - 2;
+              bouncePaddle('right');
+              updateScore('CPU returns the ball.');
+            } else if (state.ball.x > canvas.width) {
+              state.scores.left += 1;
+              if (state.scores.left >= 7) {
+                state.running = false;
+                updateScore('You win. Press Start to play again.');
+                resetBall(-1);
+                draw();
+                return;
+              }
+              resetBall(-1);
+            }
+          }
+
+          draw();
+        };
+
+        window.padelMovePaddle = function(side, delta) {
+          const key = side === 'left' ? 'left' : 'right';
+          state.paddles[key] = clamp(state.paddles[key] + delta, 0, canvas.height - paddleHeight);
+          draw();
+        };
+
+        window.padelStartGame = function() {
+          state.scores.left = 0;
+          state.scores.right = 0;
+          state.paddles.left = 118;
+          state.paddles.right = 118;
+          state.running = true;
+          resetBall(Math.random() > 0.5 ? 1 : -1);
+          updateScore('Game started. Keep the ball in play.');
+        };
+
+        window.padelResetGame = function() {
+          serve();
+        };
+
+        state.timer = window.setInterval(tick, 16);
+        serve();
+        return () => {
+          if (state.timer) clearInterval(state.timer);
+        };
+      },
+      crossyroad: () => {
+        const scope = modalInner;
+        const canvas = scope.querySelector('#crossyRoadCanvas');
+        const status = scope.querySelector('#crossyRoadStatus');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const cols = 7;
+        const rows = 5;
+        const tile = canvas.width / cols;
+        const state = {
+          player: { x: 3, y: rows - 1 },
+          cars: [],
+          finished: false,
+          timer: null
+        };
+
+        const lanes = [1, 2, 3];
+
+        const buildCars = () => lanes.flatMap((lane, laneIndex) => {
+          const direction = laneIndex % 2 === 0 ? 1 : -1;
+          const speed = 0.03 + (laneIndex * 0.012);
+          return [0, 2.2, 4.4].map((x, index) => ({
+            x: (x + laneIndex) % cols,
+            y: lane,
+            width: index === 1 ? 0.95 : 0.8,
+            direction,
+            speed: speed + (index * 0.004),
+            color: index === 0 ? '#f97316' : (index === 1 ? '#ef4444' : '#fb7185')
+          }));
+        });
+
+        const setStatus = (message) => {
+          if (!status) return;
+          status.textContent = message;
+        };
+
+        const render = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#0f172a';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          for (let row = 0; row < rows; row += 1) {
+            ctx.fillStyle = row % 2 === 0 ? '#111827' : '#1f2937';
+            ctx.fillRect(0, row * tile, canvas.width, tile - 1);
+          }
+
+          ctx.fillStyle = '#0b1220';
+          lanes.forEach((lane) => {
+            ctx.fillRect(0, lane * tile, canvas.width, tile - 1);
+          });
+
+          state.cars.forEach((car) => {
+            ctx.fillStyle = car.color;
+            ctx.fillRect(car.x * tile + 6, car.y * tile + 12, (car.width * tile) - 12, tile - 24);
+            ctx.fillStyle = '#e2e8f0';
+            ctx.fillRect(car.x * tile + 10, car.y * tile + 18, 12, 10);
+            ctx.fillRect(car.x * tile + (car.width * tile) - 22, car.y * tile + 18, 12, 10);
+          });
+
+          ctx.fillStyle = '#22c55e';
+          ctx.beginPath();
+          ctx.arc(state.player.x * tile + tile / 2, state.player.y * tile + tile / 2, tile * 0.22, 0, Math.PI * 2);
+          ctx.fill();
+        };
+
+        const hitTraffic = () => state.cars.some((car) => {
+          if (car.y !== state.player.y) return false;
+          return state.player.x + 0.1 >= car.x && state.player.x <= car.x + car.width;
+        });
+
+        const finish = (message) => {
+          state.finished = true;
+          setStatus(message);
+        };
+
+        const tick = () => {
+          if (state.finished) return;
+          state.cars.forEach((car) => {
+            car.x += car.speed * car.direction;
+            if (car.direction > 0 && car.x > cols) car.x = -car.width - 0.15;
+            if (car.direction < 0 && car.x < -car.width) car.x = cols + 0.15;
+          });
+          if (hitTraffic()) {
+            finish('Game over. Reset to try again.');
+          }
+          render();
+        };
+
+        window.resetCrossyRoadGame = function() {
+          state.player = { x: 3, y: rows - 1 };
+          state.cars = buildCars();
+          state.finished = false;
+          setStatus('Cross the road without hitting traffic.');
+          render();
+        };
+
+        window.crossyMove = function(dx, dy) {
+          if (state.finished) return;
+          const nextX = state.player.x + dx;
+          const nextY = state.player.y + dy;
+          if (nextX < 0 || nextX >= cols || nextY < 0 || nextY >= rows) return;
+          state.player = { x: nextX, y: nextY };
+          if (state.player.y === 0) {
+            finish('You reached the goal.');
+          } else if (hitTraffic()) {
+            finish('Game over. Reset to try again.');
+          } else {
+            setStatus('Keep crossing and avoid the cars.');
+          }
+          render();
+        };
+
+        state.timer = window.setInterval(tick, 40);
+        window.resetCrossyRoadGame();
+        return () => {
+          if (state.timer) clearInterval(state.timer);
+        };
+      },
+      phonetic: () => {
+        const scope = modalInner;
+        const input = scope.querySelector('#phoneticInput');
+        const output = scope.querySelector('#phoneticOutput');
+        const words = {
+          A: 'Alpha', B: 'Bravo', C: 'Charlie', D: 'Delta', E: 'Echo', F: 'Foxtrot', G: 'Golf', H: 'Hotel',
+          I: 'India', J: 'Juliett', K: 'Kilo', L: 'Lima', M: 'Mike', N: 'November', O: 'Oscar', P: 'Papa',
+          Q: 'Quebec', R: 'Romeo', S: 'Sierra', T: 'Tango', U: 'Uniform', V: 'Victor', W: 'Whiskey', X: 'X-ray',
+          Y: 'Yankee', Z: 'Zulu'
+        };
+
+        const translate = () => {
+          const text = input?.value || '';
+          const result = [];
+          for (const char of text.toUpperCase()) {
+            if (words[char]) result.push(words[char]);
+            if (char === ' ') result.push('/');
+          }
+          if (output) output.textContent = result.join(' ') || 'Type a word or sentence to translate.';
+        };
+
+        window.translatePhonetic = translate;
+        window.clearPhoneticTranslator = function() {
+          if (input) input.value = '';
+          if (output) output.textContent = 'Type a word or sentence to translate.';
+        };
+
+        if (input) input.addEventListener('input', translate);
+        translate();
+      },
+      unitconvert: () => {
+        const scope = modalInner;
+        const category = scope.querySelector('#unitCategory');
+        const fromSelect = scope.querySelector('#unitFrom');
+        const toSelect = scope.querySelector('#unitTo');
+        const valueInput = scope.querySelector('#unitValue');
+        const result = scope.querySelector('#unitResult');
+
+        const schemas = {
+          length: {
+            meter: { label: 'Meters', factor: 1 },
+            millimeter: { label: 'Millimeters', factor: 0.001 },
+            kilometer: { label: 'Kilometers', factor: 1000 },
+            centimeter: { label: 'Centimeters', factor: 0.01 },
+            foot: { label: 'Feet', factor: 0.3048 },
+            mile: { label: 'Miles', factor: 1609.344 }
+          },
+          mass: {
+            kilogram: { label: 'Kilograms', factor: 1 },
+            gram: { label: 'Grams', factor: 0.001 },
+            pound: { label: 'Pounds', factor: 0.45359237 },
+            ounce: { label: 'Ounces', factor: 0.0283495231 }
+          },
+          temperature: {
+            celsius: { label: 'Celsius' },
+            fahrenheit: { label: 'Fahrenheit' },
+            kelvin: { label: 'Kelvin' }
+          }
+        };
+
+        const setOptions = () => {
+          if (!category || !fromSelect || !toSelect) return;
+          const units = schemas[category.value];
+          const unitEntries = Object.entries(units);
+          fromSelect.innerHTML = unitEntries.map(([value, item]) => `<option value="${value}">${item.label}</option>`).join('');
+          toSelect.innerHTML = unitEntries.map(([value, item]) => `<option value="${value}">${item.label}</option>`).join('');
+          fromSelect.selectedIndex = 0;
+          toSelect.selectedIndex = Math.min(1, unitEntries.length - 1);
+        };
+
+        const convertTemperature = (value, fromUnit, toUnit) => {
+          let celsius = value;
+          if (fromUnit === 'fahrenheit') celsius = (value - 32) * 5 / 9;
+          if (fromUnit === 'kelvin') celsius = value - 273.15;
+          if (toUnit === 'fahrenheit') return celsius * 9 / 5 + 32;
+          if (toUnit === 'kelvin') return celsius + 273.15;
+          return celsius;
+        };
+
+        const convert = () => {
+          const value = Number(valueInput?.value || 0);
+          const currentCategory = category?.value || 'length';
+          const fromUnit = fromSelect?.value;
+          const toUnit = toSelect?.value;
+          if (!result || !fromUnit || !toUnit) return;
+          let converted = value;
+          if (currentCategory === 'temperature') {
+            converted = convertTemperature(value, fromUnit, toUnit);
+          } else {
+            const units = schemas[currentCategory];
+            converted = value * units[fromUnit].factor / units[toUnit].factor;
+          }
+          result.textContent = `${value} ${fromSelect.options[fromSelect.selectedIndex].text} = ${Number(converted.toFixed(4))} ${toSelect.options[toSelect.selectedIndex].text}`;
+        };
+
+        window.renderUnitOptions = function() {
+          setOptions();
+          convert();
+        };
+        window.convertUnit = convert;
+
+        if (category) category.addEventListener('change', window.renderUnitOptions);
+        if (valueInput) valueInput.addEventListener('input', convert);
+        setOptions();
+        convert();
+      },
+      pomodoro: () => {
+        const scope = modalInner;
+        const timer = scope.querySelector('#pomodoroTimer');
+        const phase = scope.querySelector('#pomodoroPhase');
+        const focusInput = scope.querySelector('#pomodoroFocus');
+        const breakInput = scope.querySelector('#pomodoroBreak');
+        let intervalId = null;
+        let running = false;
+        let currentPhase = 'focus';
+        let remainingSeconds = 25 * 60;
+
+        const getDurations = () => ({
+          focus: Math.max(1, Number(focusInput?.value || 25)),
+          break: Math.max(1, Number(breakInput?.value || 5))
+        });
+
+        const format = (seconds) => `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+
+        const render = () => {
+          if (timer) timer.textContent = format(remainingSeconds);
+          if (phase) phase.textContent = currentPhase === 'focus' ? 'Focus session' : 'Break session';
+        };
+
+        const tick = () => {
+          if (remainingSeconds <= 0) {
+            const durations = getDurations();
+            currentPhase = currentPhase === 'focus' ? 'break' : 'focus';
+            remainingSeconds = (currentPhase === 'focus' ? durations.focus : durations.break) * 60;
+          } else {
+            remainingSeconds -= 1;
+          }
+          render();
+        };
+
+        window.startPomodoroTimer = function() {
+          if (running) return;
+          running = true;
+          intervalId = window.setInterval(tick, 1000);
+        };
+
+        window.pausePomodoroTimer = function() {
+          running = false;
+          if (intervalId) {
+            window.clearInterval(intervalId);
+            intervalId = null;
+          }
+        };
+
+        window.resetPomodoroTimer = function() {
+          window.pausePomodoroTimer();
+          const durations = getDurations();
+          currentPhase = 'focus';
+          remainingSeconds = durations.focus * 60;
+          render();
+        };
+
+        render();
+        window.resetPomodoroTimer();
+        return () => window.pausePomodoroTimer();
+      },
+      passwordmgr: () => {
+        const scope = modalInner;
+        const siteInput = scope.querySelector('#pmSite');
+        const userInput = scope.querySelector('#pmUser');
+        const passInput = scope.querySelector('#pmPass');
+        const status = scope.querySelector('#pmStatus');
+        const list = scope.querySelector('#pmList');
+        let entries = [];
+
+        const render = () => {
+          if (status) status.textContent = entries.length ? `${entries.length} saved entr${entries.length === 1 ? 'y' : 'ies'}.` : 'No entries saved yet.';
+          if (!list) return;
+          list.innerHTML = entries.length ? entries.map((entry, index) => `
+            <div class="stack-item" style="border: 1px solid var(--border); border-radius: 12px; padding: 0.85rem; background: rgba(15, 23, 42, 0.68);">
+              <div style="display:flex; justify-content:space-between; gap:0.75rem; align-items:flex-start;">
+                <div>
+                  <strong>${entry.site}</strong>
+                  <div class="project-note">${entry.user}</div>
+                  <div class="project-note mono">${entry.pass.replace(/./g, '*')}</div>
+                </div>
+                <button class="project-btn ghost" onclick="deletePasswordEntry(${index})">Delete</button>
+              </div>
+            </div>
+          `).join('') : '<div class="project-note">Add a login entry to start building your vault.</div>';
+        };
+
+        window.addPasswordEntry = function() {
+          const site = siteInput?.value.trim();
+          const user = userInput?.value.trim();
+          const pass = passInput?.value.trim();
+          if (!site || !user || !pass) {
+            if (status) status.textContent = 'Fill in site, username, and password first.';
+            return;
+          }
+          entries.unshift({ site, user, pass });
+          if (siteInput) siteInput.value = '';
+          if (userInput) userInput.value = '';
+          if (passInput) passInput.value = '';
+          render();
+        };
+
+        window.deletePasswordEntry = function(index) {
+          entries.splice(index, 1);
+          render();
+        };
+
+        render();
       },
       pyauction: () => {
         const scope = modalInner;
@@ -4507,55 +5287,11 @@
           if (!canvas) return;
           const ctx = canvas.getContext('2d');
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-        };
-
-        draw();
-      },
-      pyshapes: () => {
-        const scope = modalInner;
-        const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#6366f1', '#ec4899', '#8b5cf6'];
-
-        const clear = () => {
-          const canvas = scope.querySelector('#pyShapesCanvas');
-          if (!canvas) return;
-          const ctx = canvas.getContext('2d');
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          ctx.fillStyle = '#ffffff';
+          ctx.fillStyle = '#f8f8f8';
           ctx.fillRect(0, 0, canvas.width, canvas.height);
         };
 
-        const drawPolygon = (ctx, sides, radius, cx, cy) => {
-          ctx.beginPath();
-          for (let i = 0; i <= sides; i += 1) {
-            const angle = ((Math.PI * 2) / sides) * i - (Math.PI / 2);
-            const x = cx + radius * Math.cos(angle);
-            const y = cy + radius * Math.sin(angle);
-            if (i === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-          }
-          ctx.stroke();
-        };
-
-        window.drawPyShapes = function() {
-          const canvas = scope.querySelector('#pyShapesCanvas');
-          if (!canvas) return;
-          const ctx = canvas.getContext('2d');
-          clear();
-          ctx.lineWidth = 2.2;
-          const cx = canvas.width / 2;
-          const cy = canvas.height / 2;
-          for (let sides = 3; sides <= 10; sides += 1) {
-            ctx.strokeStyle = colors[(sides - 3) % colors.length];
-            drawPolygon(ctx, sides, 36 + (sides * 14), cx, cy);
-          }
-        };
-
-        window.clearPyShapes = function() {
-          clear();
-        };
-
-        clear();
-        window.drawPyShapes();
+        draw();
       },
       pyrandompath: () => {
         const scope = modalInner;
@@ -4889,6 +5625,35 @@
           }
         };
 
+        const etchTouch = { x: 0, y: 0 };
+        const etchCanvas = scope.querySelector('#pyEtchCanvas');
+        if (etchCanvas) {
+          etchCanvas.addEventListener('touchstart', (event) => {
+            const touch = event.touches[0];
+            if (!touch) return;
+            etchTouch.x = touch.clientX;
+            etchTouch.y = touch.clientY;
+          }, { passive: true });
+
+          etchCanvas.addEventListener('touchend', (event) => {
+            const touch = event.changedTouches[0];
+            if (!touch) return;
+            const dx = touch.clientX - etchTouch.x;
+            const dy = touch.clientY - etchTouch.y;
+            const threshold = 28;
+            if (Math.abs(dx) < threshold && Math.abs(dy) < threshold) return;
+            event.preventDefault();
+            if (Math.abs(dx) > Math.abs(dy)) {
+              state.heading += dx > 0 ? 15 : -15;
+            } else {
+              move(dy > 0 ? -state.step : state.step);
+            }
+            if (statusEl()) {
+              statusEl().textContent = `Heading ${Math.round(state.heading)} deg. Position (${Math.round(state.x)}, ${Math.round(state.y)}).`;
+            }
+          }, { passive: false });
+        }
+
         window.addEventListener('keydown', keyHandler);
         window.clearPyEtch();
         return () => {
@@ -5125,6 +5890,34 @@
           event.preventDefault();
           requestDirection(next);
         };
+
+        const snakeTouch = { x: 0, y: 0 };
+        const snakeCanvas = canvasEl();
+        if (snakeCanvas) {
+          snakeCanvas.addEventListener('touchstart', (event) => {
+            const touch = event.touches[0];
+            if (!touch) return;
+            snakeTouch.x = touch.clientX;
+            snakeTouch.y = touch.clientY;
+          }, { passive: true });
+
+          snakeCanvas.addEventListener('touchend', (event) => {
+            const touch = event.changedTouches[0];
+            if (!touch) return;
+            const dx = touch.clientX - snakeTouch.x;
+            const dy = touch.clientY - snakeTouch.y;
+            const threshold = 24;
+            if (Math.abs(dx) < threshold && Math.abs(dy) < threshold) return;
+            event.preventDefault();
+            const next = Math.abs(dx) > Math.abs(dy)
+              ? (dx > 0 ? 'right' : 'left')
+              : (dy > 0 ? 'down' : 'up');
+            if (!state.started) {
+              window.startPySnakeGame();
+            }
+            requestDirection(next);
+          }, { passive: false });
+        }
 
         window.addEventListener('keydown', keyHandler);
         resetState();
