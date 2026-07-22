@@ -3159,7 +3159,7 @@
                 <button onclick="translatePhonetic()" class="project-btn primary">Translate</button>
                 <button onclick="clearPhoneticTranslator()" class="project-btn ghost">Clear</button>
               </div>
-              <pre id="phoneticOutput" class="project-output mono" style="margin-top: 0.8rem; min-height: 120px; white-space: pre-wrap;">Kilo Yankee Lima Echo</pre>
+              <pre id="phoneticOutput" class="project-output mono" style="margin-top: 0.8rem; min-height: 120px; white-space: pre-wrap;">Click Translate to convert your text.</pre>
             </div>
             <div class="project-panel">
               <h3>Skills demonstrated</h3>
@@ -4534,9 +4534,6 @@
           if (input) input.value = '';
           if (output) output.textContent = 'Type a word or sentence to translate.';
         };
-
-        if (input) input.addEventListener('input', translate);
-        translate();
       },
       unitconvert: () => {
         const scope = modalInner;
