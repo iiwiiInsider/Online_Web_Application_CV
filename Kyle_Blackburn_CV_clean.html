@@ -2022,6 +2022,22 @@
             <span class="tag">Data</span>
           </div>
         </div>
+
+        <div class="card project-card">
+          <div class="card-header">
+            <strong>French Flashcards</strong>
+            <div class="project-card-actions">
+              <span class="status-badge complete">Complete</span>
+              <button class="btn-arrow" data-project="pyflashcards">View</button>
+            </div>
+          </div>
+          <p>Interactive French word flashcards with random prompts and reveal-on-click translation.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Tkinter</span>
+            <span class="tag">Vocabulary</span>
+          </div>
+        </div>
       </div>
       <p class="project-note" style="text-align: center; margin-top: -0.5rem;">More projects to be added.</p>
     </section>
@@ -3172,6 +3188,45 @@
                 <span class="tag">Python</span>
                 <span class="tag">Dictionary</span>
                 <span class="tag">Translator</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `,
+      pyflashcards: `
+        <article class="project-modal">
+          <div class="project-header">
+            <div>
+              <h2>French Flashcards</h2>
+              <p class="project-subtitle">Practice common French words by revealing English translations on demand.</p>
+            </div>
+            <span class="status-badge complete">Complete</span>
+          </div>
+          <div class="project-layout">
+            <div class="project-panel center">
+              <div class="project-output" style="background: #b2d8d8; color: #0f4f4f; width: min(100%, 360px); min-height: 190px; border-radius: 18px; border: 1px solid rgba(15, 79, 79, 0.24); display: grid; place-items: center; padding: 1rem; margin: 0 auto;">
+                <div style="text-align: center; width: 100%;">
+                  <div class="project-note" style="font-size: 1rem; color: #0f4f4f; font-weight: 700; margin-bottom: 0.5rem;">French</div>
+                  <div id="frFlashWord" class="mono" style="font-size: 2rem; font-weight: 800; color: #083636;">le</div>
+                </div>
+              </div>
+              <div class="project-actions" style="justify-content: center; margin-top: 0.8rem;">
+                <button onclick="frFlashNextWord()" class="project-btn danger" aria-label="Next French word">X</button>
+                <button onclick="frFlashShowTranslation()" class="project-btn success" aria-label="Show English translation">✓</button>
+              </div>
+              <div id="frFlashTranslation" class="project-output mono" style="margin: 0.8rem auto 0; width: min(100%, 360px); min-height: 56px; text-align: center;">Click ✓ to reveal translation.</div>
+            </div>
+            <div class="project-panel">
+              <h3>Skills demonstrated</h3>
+              <ul class="project-list">
+                <li>Randomized card selection</li>
+                <li>State-driven UI updates</li>
+                <li>Interactive reveal flow</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Tkinter</span>
+                <span class="tag">Practice Tool</span>
               </div>
             </div>
           </div>
@@ -4534,6 +4589,72 @@
           if (input) input.value = '';
           if (output) output.textContent = 'Type a word or sentence to translate.';
         };
+      },
+      pyflashcards: () => {
+        const scope = modalInner;
+        const wordEl = scope.querySelector('#frFlashWord');
+        const translationEl = scope.querySelector('#frFlashTranslation');
+
+        const cards = [
+          ['le', 'the (masculine)'],
+          ['la', 'the (feminine)'],
+          ['les', 'the (plural)'],
+          ['un', 'a / one (masculine)'],
+          ['une', 'a / one (feminine)'],
+          ['et', 'and'],
+          ['a', 'to / at'],
+          ['de', 'of / from'],
+          ['en', 'in / by'],
+          ['dans', 'in / inside'],
+          ['je', 'I'],
+          ['tu', 'you (informal)'],
+          ['il', 'he / it'],
+          ['elle', 'she / it'],
+          ['on', 'one / we (informal)'],
+          ['nous', 'we'],
+          ['vous', 'you (formal / plural)'],
+          ['ils', 'they (masculine)'],
+          ['elles', 'they (feminine)'],
+          ['etre', 'to be'],
+          ['avoir', 'to have'],
+          ['faire', 'to do / to make'],
+          ['aller', 'to go'],
+          ['pouvoir', 'can / to be able to'],
+          ['vouloir', 'to want'],
+          ['dire', 'to say / to tell'],
+          ['voir', 'to see'],
+          ['savoir', 'to know (a fact)'],
+          ['venir', 'to come']
+        ];
+
+        let currentIndex = 0;
+        let lastIndex = -1;
+
+        const pickNext = () => {
+          if (!cards.length) return;
+          if (cards.length === 1) {
+            currentIndex = 0;
+            return;
+          }
+          let next = Math.floor(Math.random() * cards.length);
+          while (next === lastIndex) {
+            next = Math.floor(Math.random() * cards.length);
+          }
+          currentIndex = next;
+          lastIndex = next;
+        };
+
+        window.frFlashNextWord = function() {
+          pickNext();
+          if (wordEl) wordEl.textContent = cards[currentIndex][0];
+          if (translationEl) translationEl.textContent = 'Click ✓ to reveal translation.';
+        };
+
+        window.frFlashShowTranslation = function() {
+          if (translationEl) translationEl.textContent = cards[currentIndex][1];
+        };
+
+        window.frFlashNextWord();
       },
       unitconvert: () => {
         const scope = modalInner;
